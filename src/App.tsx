@@ -40,11 +40,11 @@ function App() {
       </header>
       <main className="flex-auto bg-slate-800">
         <div className="h-full w-full max-w-[500px] mx-auto">
-          <Switch>
-            <Route path="/" component={Index}></Route>
-            <Route path="/stats" component={Stats}></Route>
-            <Route path="/config" component={Config}></Route>
-            <Route path="/help" component={Help}></Route>
+          <Switch location=''>
+            <Route path="/sokoble" component={Index}></Route>
+            <Route path="/sokoble/stats" component={Stats}></Route>
+            <Route path="/sokoble/config" component={Config}></Route>
+            <Route path="/sokoble/help" component={Help}></Route>
           </Switch>
         </div>
       </main>
