@@ -1,14 +1,14 @@
 {
-  "name": "react-demo",
+  "name": "sokoble",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "deploy": "gh-pages -d dist"
+    "deploy": "tsc && vite build && gh-pages -d dist"
   },
   "dependencies": {
     "framer-motion": "^7.5.3",
