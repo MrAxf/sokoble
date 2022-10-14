@@ -1,8 +1,11 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { ReactNode, Suspense, lazy } from 'react'
 import { MdHelp, MdOutlinePoll, MdSettings } from 'react-icons/md'
-import { Link, Route, Router, Switch } from 'wouter'
+import { Link, Route, Router, Switch, useLocation } from 'wouter'
 
-const loadingFallback = (): ReactNode => <p>Loading...</p>
+const loadingFallback = (): ReactNode => (
+  <div className="text-white tex-xl">Loading...</div>
+)
 
 const Index = lazy(() => import('./pages/Index'))
 const Stats = lazy(() => import('./pages/Stats'))
@@ -10,6 +13,8 @@ const Config = lazy(() => import('./pages/Config'))
 const Help = lazy(() => import('./pages/Help'))
 
 function App() {
+  const [location] = useLocation()
+
   return (
     <Router base="/sokoble">
       <div className="flex h-screen flex-col">
@@ -43,17 +48,26 @@ function App() {
           </nav>
         </header>
         <main className="flex-auto bg-slate-800">
-          <div className="h-full w-full max-w-[500px] mx-auto">
-            <Suspense fallback={loadingFallback()}>
-              <Switch>
-                <Route path="/">{() => <Index />}</Route>
-                <Route path="/stats">{() => <Stats />}</Route>
-                <Route path="/config">{() => <Config />}</Route>
-                <Route path="/help">{() => <Help />}</Route>
-                <Route>404 Page not found</Route>
-              </Switch>
-            </Suspense>
-          </div>
+          <AnimatePresence initial={false} exitBeforeEnter>
+            <motion.div
+              key={location}
+              initial={{ opacity: 0, x: '-100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ duration: 0.3 }}
+              className="h-full w-full max-w-[500px] mx-auto"
+            >
+              <Suspense fallback={loadingFallback()}>
+                <Switch>
+                  <Route path="/">{() => <Index />}</Route>
+                  <Route path="/stats">{() => <Stats />}</Route>
+                  <Route path="/config">{() => <Config />}</Route>
+                  <Route path="/help">{() => <Help />}</Route>
+                  <Route>404 Page not found</Route>
+                </Switch>
+              </Suspense>
+            </motion.div>
+          </AnimatePresence>
         </main>
         <footer className="flex flex-none flex-row justify-center bg-slate-900 py-1">
           <span className="text-center text-sm text-white">ⓒAxford 2022</span>

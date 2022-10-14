@@ -1,5 +1,3 @@
 export default function Config() {
-  return (
-    <h1>Config</h1>
-  )
+  return <div className="text-white tex-xl">Config</div>
 }

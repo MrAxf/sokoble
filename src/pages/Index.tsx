@@ -1,8 +1,8 @@
-import SokobanGame from "../components/SokobanGame";
+import SokobanGame from '../components/SokobanGame'
 
 export default function Index() {
   return (
-    <div>Hola</div>
+    <div className="text-white tex-xl">Hola</div>
     // <SokobanGame
     //   board={{
     //     board: [

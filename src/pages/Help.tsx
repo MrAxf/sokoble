@@ -1,5 +1,3 @@
 export default function Help() {
-  return (
-    <div>Help</div>
-  )
+  return <div className="text-white tex-xl">Help</div>
 }
