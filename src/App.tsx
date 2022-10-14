@@ -1,7 +1,8 @@
-import { AnimatePresence, motion } from 'framer-motion'
 import { ReactNode, Suspense, lazy } from 'react'
-import { MdHelp, MdOutlinePoll, MdSettings } from 'react-icons/md'
-import { Link, Route, Router, Switch, useLocation } from 'wouter'
+import { Route, Router, Switch } from 'wouter'
+
+import MainLayout from './layouts/MainLayout'
+import PageLayout from './layouts/PageLayout'
 
 const loadingFallback = (): ReactNode => (
   <div className="text-white tex-xl">Loading...</div>
@@ -13,66 +14,21 @@ const Config = lazy(() => import('./pages/Config'))
 const Help = lazy(() => import('./pages/Help'))
 
 function App() {
-  const [location] = useLocation()
-
   return (
     <Router base="/sokoble">
-      <div className="flex h-screen flex-col">
-        <header className="flex flex-none flex-row justify-center bg-slate-900 py-2">
-          <nav className="flex w-full max-w-[500px] flex-row justify-center">
-            <Link href="/help" className="flex-none">
-              <a className="grid place-items-center rounded-md p-2 text-2xl text-white transition hover:bg-gray-500 hover:bg-opacity-50">
-                <MdHelp></MdHelp>
-              </a>
-            </Link>
-            <div className="w-[40px] flex-none"></div>
-            <div className="flex-auto"></div>
-            <Link href="/" className="flex-none">
-              <a className="grid place-items-center rounded-md p-2 transition hover:bg-gray-500 hover:bg-opacity-50">
-                <h1 className="bg-gradient-to-br from-indigo-700 to-red-600 bg-clip-text text-center text-4xl font-bold text-transparent ">
-                  Sokoble
-                </h1>
-              </a>
-            </Link>
-            <div className="flex-auto"></div>
-            <Link href="/stats" className="flex-none">
-              <a className="grid place-items-center rounded-md p-2 text-2xl text-white transition hover:bg-gray-500 hover:bg-opacity-50">
-                <MdOutlinePoll></MdOutlinePoll>
-              </a>
-            </Link>
-            <Link href="/config" className="flex-none">
-              <a className="grid place-items-center rounded-md p-2 text-2xl text-white transition hover:bg-gray-500 hover:bg-opacity-50">
-                <MdSettings></MdSettings>
-              </a>
-            </Link>
-          </nav>
-        </header>
-        <main className="flex-auto bg-slate-800">
-          <AnimatePresence initial={false} exitBeforeEnter>
-            <motion.div
-              key={location}
-              initial={{ opacity: 0, x: '-100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ duration: 0.3 }}
-              className="h-full w-full max-w-[500px] mx-auto"
-            >
-              <Suspense fallback={loadingFallback()}>
-                <Switch>
-                  <Route path="/">{() => <Index />}</Route>
-                  <Route path="/stats">{() => <Stats />}</Route>
-                  <Route path="/config">{() => <Config />}</Route>
-                  <Route path="/help">{() => <Help />}</Route>
-                  <Route>404 Page not found</Route>
-                </Switch>
-              </Suspense>
-            </motion.div>
-          </AnimatePresence>
-        </main>
-        <footer className="flex flex-none flex-row justify-center bg-slate-900 py-1">
-          <span className="text-center text-sm text-white">ⓒAxford 2022</span>
-        </footer>
-      </div>
+      <MainLayout>
+        <PageLayout>
+          <Suspense fallback={loadingFallback()}>
+            <Switch>
+              <Route path="/">{() => <Index />}</Route>
+              <Route path="/stats">{() => <Stats />}</Route>
+              <Route path="/config">{() => <Config />}</Route>
+              <Route path="/help">{() => <Help />}</Route>
+              <Route>404 Page not found</Route>
+            </Switch>
+          </Suspense>
+        </PageLayout>
+      </MainLayout>
     </Router>
   )
 }
