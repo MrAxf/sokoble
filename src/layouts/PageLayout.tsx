@@ -10,7 +10,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
   const [location] = useLocation()
 
   return (
-    <AnimatePresence initial={false} exitBeforeEnter>
+    <AnimatePresence initial={false} mode="wait">
       <motion.div
         key={location}
         initial={{ opacity: 0, x: '-100%' }}
