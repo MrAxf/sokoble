@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { SokobanProvider } from '../providers/SokobanProvider'
 import sokobanBoard, { sokobanMeta } from '../store/sokobanBoard'
 import Player from './Player'
+import SokobanGrid from './SokobanGrid'
 
 export default function SokobanGame() {
   const board = useRecoilValue(sokobanBoard)
@@ -44,16 +45,9 @@ export default function SokobanGame() {
 
   return (
     <SokobanProvider board={board}>
-      <div
-        role="grid"
-        className="grid w-full aspect-square rounded-xl border-4 border-violet-600 max-w-full max-h-full relative overflow-hidden"
-        style={{
-          gridTemplateColumns: `repeat(${(meta.size || 0) + 2}, 1fr)`,
-        }}
-      >
-        {renderBoard()}
+      <SokobanGrid>
         <Player />
-      </div>
+      </SokobanGrid>
     </SokobanProvider>
   )
 }
