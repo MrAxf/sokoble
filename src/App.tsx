@@ -1,4 +1,5 @@
 import { ReactNode, Suspense, lazy } from 'react'
+import { RecoilRoot } from 'recoil'
 import { Route, Router, Switch } from 'wouter'
 
 import MainLayout from './layouts/MainLayout'
@@ -15,21 +16,23 @@ const Help = lazy(() => import('./pages/Help'))
 
 function App() {
   return (
-    <Router base="/sokoble">
-      <MainLayout>
-        <PageLayout>
-          <Suspense fallback={loadingFallback()}>
-            <Switch>
-              <Route path="/">{() => <Index />}</Route>
-              <Route path="/stats">{() => <Stats />}</Route>
-              <Route path="/config">{() => <Config />}</Route>
-              <Route path="/help">{() => <Help />}</Route>
-              <Route>404 Page not found</Route>
-            </Switch>
-          </Suspense>
-        </PageLayout>
-      </MainLayout>
-    </Router>
+    <RecoilRoot>
+      <Router base="/sokoble">
+        <MainLayout>
+          <PageLayout>
+            <Suspense fallback={loadingFallback()}>
+              <Switch>
+                <Route path="/">{() => <Index />}</Route>
+                <Route path="/stats">{() => <Stats />}</Route>
+                <Route path="/config">{() => <Config />}</Route>
+                <Route path="/help">{() => <Help />}</Route>
+                <Route>404 Page not found</Route>
+              </Switch>
+            </Suspense>
+          </PageLayout>
+        </MainLayout>
+      </Router>
+    </RecoilRoot>
   )
 }
 
