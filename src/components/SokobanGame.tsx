@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
-import sokobanBoard, { sokobanMeta } from '../store/sokobanBoard'
 import { useRecoilValue } from 'recoil'
 
+import { SokobanProvider } from '../providers/SokobanProvider'
+import sokobanBoard, { sokobanMeta } from '../store/sokobanBoard'
 import Player from './Player'
 
 export default function SokobanGame() {
   const board = useRecoilValue(sokobanBoard)
-  const meta = useRecoilValue(sokobanMeta)
 
   const renderCell = (cell: SokobanCell, key: string) =>
     ({
@@ -43,15 +43,17 @@ export default function SokobanGame() {
   }, [board])
 
   return (
-    <div
-      role="grid"
-      className="grid w-full aspect-square rounded-xl border-4 border-violet-600 max-w-full max-h-full relative"
-      style={{
-        gridTemplateColumns: `repeat(${(meta.size || 0) + 2}, 1fr)`,
-      }}
-    >
-      {renderBoard()}
-      <Player/>
-    </div>
+    <SokobanProvider board={board}>
+      <div
+        role="grid"
+        className="grid w-full aspect-square rounded-xl border-4 border-violet-600 max-w-full max-h-full relative overflow-hidden"
+        style={{
+          gridTemplateColumns: `repeat(${(meta.size || 0) + 2}, 1fr)`,
+        }}
+      >
+        {renderBoard()}
+        <Player />
+      </div>
+    </SokobanProvider>
   )
 }
