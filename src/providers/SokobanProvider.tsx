@@ -17,14 +17,26 @@ interface SokobanProviderState {
   }
 }
 
-interface SokobanContextValue extends SokobanProviderState {
+interface SokobanContextValue extends Required<SokobanProviderState> {
   board: SokobanBoard
   setPlayer: React.Dispatch<SokobanProviderState['player']>
   setBoxes: React.Dispatch<SokobanProviderState['boxes']>
   setMeta: React.Dispatch<SokobanProviderState['meta']>
 }
 
-export const SokobanContext = createContext<SokobanContextValue | null>(null)
+export const SokobanContext = createContext<SokobanContextValue>({
+  board: { board: [], boxes: [], player: { x: 0, y: 0 } },
+  player: { x: 0, y: 0 },
+  boxes: [],
+  meta: {
+    size: 0,
+    walls: { top: 0, bottom: 0, left: 0, right: 0 },
+    squarePercent: 0,
+  },
+  setPlayer: () => {},
+  setBoxes: () => {},
+  setMeta: () => {},
+})
 
 export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
   const [player, setPlayer] = useState<SokobanProviderState['player']>()
