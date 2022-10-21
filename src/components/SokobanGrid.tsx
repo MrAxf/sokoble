@@ -14,7 +14,7 @@ export default function SokobanGrid() {
       BUTTON: (
         <div
           key={key}
-          className="bg-purple-300  aspect-square after:content-[''] after:bg-purple-50 after:rounded-full after:m-[25%] after:block after:w-1/2 after:h-1/2"
+          className="bg-purple-300 aspect-square after:content-[''] after:bg-purple-50 after:rounded-full after:m-[25%] after:block after:w-1/2 after:h-1/2"
         ></div>
       ),
     }[cell])
