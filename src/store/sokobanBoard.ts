@@ -4,11 +4,16 @@ const sokobanBoard = atom<SokobanBoard>({
   key: 'sokobanBoard',
   default: {
     board: [
-      ['FREE', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
-      ['FREE', 'FREE', "FREE", "FREE", "FREE", "FREE", "FREE"],
+      ['BLOCK', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
+      ['BLOCK', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
+      ['BLOCK', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
+      ['BLOCK', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
+      ['BLOCK', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
+      ['BLOCK', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
+      ['BLOCK', 'FREE', "FREE", "FREE", "FREE", "FREE", "BLOCK"],
     ],
-    player: { x: 0, y: 0 },
-    boxes: [{ x: 1, y: 0 }],
+    player: { x: 1, y: 0 },
+    boxes: [{ x: 3, y: 3 }, { x: 3, y: 4 }],
   }
 })
 
