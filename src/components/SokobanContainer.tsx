@@ -8,17 +8,22 @@ type SokobanContainerProps = {
 
 export default function SokobanContainer({ children }: SokobanContainerProps) {
   const container = useRef<HTMLDivElement | null>(null)
-  const { movePlayer } = useSokoban()
+  const { movePlayer, undo } = useSokoban()
 
   const onContainerKeyDown = (evt: KeyboardEvent<HTMLDivElement>) => {
-    const direction = {
-      ArrowUp: 'up',
-      ArrowDown: 'down',
-      ArrowLeft: 'left',
-      ArrowRight: 'right',
-    }[evt.key]
+    evt.preventDefault();
+    if(evt.ctrlKey && evt.key === 'z') {
+      undo()
+    } else {
+      const direction = {
+        ArrowUp: 'up',
+        ArrowDown: 'down',
+        ArrowLeft: 'left',
+        ArrowRight: 'right',
+      }[evt.key]
 
-    if (direction) movePlayer(direction as Direction)
+      if (direction) movePlayer(direction as Direction)
+    }
   }
 
   useEffect(() => {

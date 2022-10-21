@@ -56,8 +56,8 @@ export default function SokobanGrid() {
     >
       {renderBoard()}
       <Player />
-      {Object.entries(boxes).map(([id, point]) => (
-        <Box key={id} {...point} />
+      {Object.entries(boxes).map(([id, box]) => (
+        <Box key={id} {...box} />
       ))}
     </div>
   )

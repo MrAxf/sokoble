@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { SokobanContext } from '../providers/SokobanProvider'
 
 const useSokoban = () => {
-  const { board, boxes, meta, player, setPlayer, setBoxes } = useContext(SokobanContext)
+  const { board, boxes, meta, player, undoStack, setPlayer, setBoxes, setUndoStack } = useContext(SokobanContext)
 
   const movePlayer = (direction: Direction) => {
     const step = {
@@ -36,14 +36,25 @@ const useSokoban = () => {
     const pushNextCellFree = Boolean(pushNextCell) && pushNextCell !== "BLOCK"
 
     if(nextBox === undefined && nextCellFree) {
+      setUndoStack([...undoStack, { player: { ...player } as Point, boxes: { ...boxes } }])
       setPlayer(next)
       return
     }
 
 
     if(nextBox !== undefined && nextPushBox === undefined && nextCellFree && pushNextCellFree) {
+      setUndoStack([...undoStack, { player: { ...player } as Point, boxes: { ...boxes } }])
       setPlayer(next)
-      setBoxes({ ...boxes, [nextBox]: pushNext })
+      setBoxes({ ...boxes, [nextBox]: { ...pushNext, inButton: pushNextCell === "BUTTON" } })
+    }
+  }
+
+  const undo = () => {
+    const prevState = undoStack.at(-1)
+    if(prevState) {
+      setUndoStack(undoStack.slice(0, -1))
+      setPlayer(prevState.player)
+      setBoxes(prevState.boxes)
     }
   }
 
@@ -53,6 +64,7 @@ const useSokoban = () => {
     meta,
     player,
     movePlayer,
+    undo,
   }
 }
 

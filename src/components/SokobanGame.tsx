@@ -10,18 +10,21 @@ export default function SokobanGame() {
     <SokobanProvider
       board={{
         board: [
-          ['BLOCK', 'BUTTON', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'BUTTON', 'BLOCK'],
+          ['BLOCK', 'BLOCK', 'BLOCK', 'FREE',  'BLOCK', 'BLOCK',  'BLOCK',  'BLOCK', 'BLOCK', 'BLOCK'],
+          ['BLOCK', 'BLOCK', 'FREE',  'FREE',  'BLOCK', 'BLOCK',  'BLOCK',  'FREE',  'FREE',  'FREE'],
+          ['BLOCK', 'FREE',  'FREE',  'FREE',  'FREE',  'FREE',   'FREE',   'FREE',  'FREE',  'FREE'],
+          ['FREE',  'FREE',  'FREE',  'FREE',  'FREE',  'FREE',   'BLOCK',  'FREE',  'FREE',  'FREE'],
+          ['BLOCK', 'BLOCK', 'FREE',  'FREE',  'BLOCK', 'BLOCK',  'BLOCK',  'FREE',  'FREE',  'FREE'],
+          ['BLOCK', 'BLOCK', 'FREE',  'FREE',  'BLOCK', 'BUTTON', 'BUTTON', 'FREE',  'FREE',  'FREE'],
+          ['BLOCK', 'BLOCK', 'FREE',  'BLOCK', 'BLOCK', 'BUTTON', 'BLOCK',  'FREE',  'BLOCK', 'BLOCK'],
+          ['BLOCK', 'FREE',  'FREE',  'FREE',  'FREE',  'FREE',   'FREE',   'BLOCK', 'BLOCK', 'BLOCK'],
+          ['BLOCK', 'FREE',  'FREE',  'FREE',  'FREE',  'FREE',   'BLOCK',  'BLOCK', 'BLOCK', 'BLOCK'],
         ],
-        player: { x: 1, y: 0 },
+        player: { x: 3, y: 3 },
         boxes: [
-          { x: 3, y: 3 },
+          { x: 4, y: 3 },
           { x: 3, y: 4 },
+          { x: 2, y: 2 },
         ],
       }}
     >
