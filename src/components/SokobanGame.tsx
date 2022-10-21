@@ -1,17 +1,30 @@
 import { useRecoilValue } from 'recoil'
 
 import { SokobanProvider } from '../providers/SokobanProvider'
-import sokobanBoard from '../store/sokobanBoard'
-import Player from './Player'
 import SokobanContainer from './SokobanContainer'
 import SokobanControls from './SokobanControls'
 import SokobanGrid from './SokobanGrid'
 
 export default function SokobanGame() {
-  const board = useRecoilValue(sokobanBoard)
-
   return (
-    <SokobanProvider board={board}>
+    <SokobanProvider
+      board={{
+        board: [
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+        ],
+        player: { x: 1, y: 0 },
+        boxes: [
+          { x: 3, y: 3 },
+          { x: 3, y: 4 },
+        ],
+      }}
+    >
       <SokobanContainer>
         <SokobanGrid />
         <SokobanControls />

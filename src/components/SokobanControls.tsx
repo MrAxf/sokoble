@@ -15,25 +15,25 @@ export default function SokobanControls() {
     <div className="flex-grow grid grid-cols-3 grid-rows-3 gap-2 p-2">
       <button
         className="grid rounded-md text-xl place-content-center row-start-1 col-start-2 bg-green-500 hover:bg-green-700 transition text-white"
-        onMouseDown={onDirectionButtonClick('up')}
+        onClick={onDirectionButtonClick('up')}
       >
         <MdKeyboardArrowUp />
       </button>
       <button
         className="grid rounded-md text-xl place-content-center row-start-2 col-start-1 bg-green-500 hover:bg-green-700 transition text-white"
-        onMouseDown={onDirectionButtonClick('left')}
+        onClick={onDirectionButtonClick('left')}
       >
         <MdKeyboardArrowLeft />
       </button>
       <button
         className="grid rounded-md text-xl place-content-center row-start-2 col-start-3 bg-green-500 hover:bg-green-700 transition text-white"
-        onMouseDown={onDirectionButtonClick('right')}
+        onClick={onDirectionButtonClick('right')}
       >
         <MdKeyboardArrowRight />
       </button>
       <button
         className="grid rounded-md text-xl place-content-center row-start-3 col-start-2 bg-green-500 hover:bg-green-700 transition text-white"
-        onMouseDown={onDirectionButtonClick('down')}
+        onClick={onDirectionButtonClick('down')}
       >
         <MdKeyboardArrowDown />
       </button>

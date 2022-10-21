@@ -1,7 +1,4 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
-
-import sokobanBoard from '../store/sokobanBoard'
-
 interface SokobanProviderProps {
   children: ReactNode
   board: SokobanBoard
@@ -79,7 +76,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
     return () => {
       setReady(false)
     }
-  }, [sokobanBoard])
+  }, [board])
 
   return (
     <SokobanContext.Provider

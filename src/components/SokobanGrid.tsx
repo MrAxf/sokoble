@@ -39,7 +39,7 @@ export default function SokobanGrid() {
         .fill('')
         .map(() => renderCell('BLOCK', String(index++))),
     ]
-  }, [board])
+  }, [meta])
 
   return (
     <div
