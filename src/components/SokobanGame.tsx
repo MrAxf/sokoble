@@ -10,13 +10,13 @@ export default function SokobanGame() {
     <SokobanProvider
       board={{
         board: [
+          ['BLOCK', 'BUTTON', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
           ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
           ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
           ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
           ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
           ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
-          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'FREE', 'BLOCK'],
+          ['BLOCK', 'FREE', 'FREE', 'FREE', 'FREE', 'BUTTON', 'BLOCK'],
         ],
         player: { x: 1, y: 0 },
         boxes: [

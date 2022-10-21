@@ -11,7 +11,12 @@ export default function SokobanGrid() {
     ({
       BLOCK: <div key={key} className="bg-purple-900 aspect-square"></div>,
       FREE: <div key={key} className="bg-purple-300 aspect-square"></div>,
-      BUTTON: <div key={key} className="bg-purple-50 aspect-square"></div>,
+      BUTTON: (
+        <div
+          key={key}
+          className="bg-purple-300  aspect-square after:content-[''] after:bg-purple-50 after:rounded-full after:m-[25%] after:block after:w-1/2 after:h-1/2"
+        ></div>
+      ),
     }[cell])
 
   const renderBoard = useCallback(() => {
