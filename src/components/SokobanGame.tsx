@@ -30,6 +30,7 @@ export default function SokobanGame() {
     >
       <SokobanContainer>
         <SokobanGrid />
+        <div className='flex-grow'></div>
         <SokobanControls />
       </SokobanContainer>
     </SokobanProvider>
