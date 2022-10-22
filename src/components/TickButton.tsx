@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode, useEffect, useRef } from 'react'
+import { MouseEvent, ReactNode, TouchEvent, useEffect, useRef } from 'react'
 
 interface TickButtonProps {
   children: ReactNode
@@ -23,10 +23,21 @@ export default function TickButton({
     tick.current = onTick
   }, [onTick])
 
-  const enableTick = (evt: MouseEvent<HTMLButtonElement>) => {
+  const enableMouseTick = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault()
     if (evt.button === 0 && actionInterval.current == undefined) {
-      tick.current()
+      startTick()
+    }
+  }
+
+  const enableTouchTick = (evt: TouchEvent<HTMLButtonElement>) => {
+    if (actionInterval.current == undefined) {
+      startTick()
+    }
+  }
+
+  const startTick = () => {
+    tick.current()
       startTimeout.current = Number(setTimeout(() => {
         actionInterval.current = Number(
           setInterval(() => {
@@ -34,7 +45,6 @@ export default function TickButton({
           }, interval)
         )
       }, tickTimeout))
-    }
   }
 
   const disableTick = () => {
@@ -50,9 +60,11 @@ export default function TickButton({
   return (
     <button
       className={`grid rounded-md text-xl place-content-center bg-green-500 hover:bg-green-700 transition text-white ${className}`}
-      onMouseDown={enableTick}
+      onMouseDown={enableMouseTick}
+      onTouchStart={enableTouchTick}
       onMouseLeave={disableTick}
       onMouseUp={disableTick}
+      onTouchEnd={disableTick}
     >
       {children}
     </button>

@@ -1,5 +1,5 @@
 import { motion, useAnimationControls } from 'framer-motion'
-import { ReactNode, useEffect } from 'react'
+import { MouseEvent, ReactNode, TouchEvent, useEffect } from 'react'
 
 interface HoldButtonProps {
   onHoldEnded: () => void
@@ -15,6 +15,15 @@ export default function HoldButton({
   className = '',
 }: HoldButtonProps) {
   const controls = useAnimationControls()
+
+  const onMouseHold = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault()
+    if (evt.button === 0) initHold()
+  }
+
+  const onTouchHold = (evt: TouchEvent<HTMLButtonElement>) => {
+    initHold()
+  }
 
   const initHold = async () => {
     await controls.start({
@@ -40,9 +49,11 @@ export default function HoldButton({
   return (
     <button
       className={`relative overflow-hidden grid rounded-md text-xl place-content-center bg-green-500 hover:bg-green-700 transition text-white ${className}`}
-      onMouseDown={initHold}
+      onMouseDown={onMouseHold}
+      onTouchStart={onTouchHold}
       onMouseUp={cancelHold}
       onMouseLeave={cancelHold}
+      onTouchEnd={cancelHold}
     >
       <motion.span
         className="absolute h-full bg-blue-500"
