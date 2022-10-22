@@ -1,4 +1,5 @@
 import { MouseEvent, ReactNode, TouchEvent, useEffect, useRef } from 'react'
+import isTouchAviable from '../utils/isTouchAviable'
 
 interface TickButtonProps {
   children: ReactNode
@@ -24,6 +25,7 @@ export default function TickButton({
   }, [onTick])
 
   const enableMouseTick = (evt: MouseEvent<HTMLButtonElement>) => {
+    if(isTouchAviable()) return
     evt.preventDefault()
     if (evt.button === 0 && actionInterval.current == undefined) {
       startTick()
@@ -31,6 +33,7 @@ export default function TickButton({
   }
 
   const enableTouchTick = (evt: TouchEvent<HTMLButtonElement>) => {
+    if(!isTouchAviable()) return
     if (actionInterval.current == undefined) {
       startTick()
     }
