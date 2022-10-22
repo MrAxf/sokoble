@@ -1,48 +1,63 @@
-import { MouseEvent } from 'react'
-import { MdKeyboardArrowDown, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardArrowUp, MdUndo } from 'react-icons/md'
+import { MouseEvent, useRef } from 'react'
+import {
+  MdKeyboardArrowDown,
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+  MdKeyboardArrowUp,
+  MdReplay,
+  MdUndo,
+} from 'react-icons/md'
 
 import useSokoban from '../uses/useSokoban'
+import HoldButton from './HoldButton'
+import TickButton from './TickButton'
 
 export default function SokobanControls() {
-  const { movePlayer, undo } = useSokoban()
+  const { movePlayer, undo, reset } = useSokoban()
+  const actionInterval = useRef<number | undefined>()
 
-  const onDirectionButtonClick = (direction: Direction) => (evt: MouseEvent<HTMLButtonElement>) => {
-    evt.preventDefault();
-    if(evt.button === 0) movePlayer(direction)
+  const onButtonTick = (direction: Direction) => () => {
+    movePlayer(direction)
   }
 
   return (
     <div className="flex-grow grid max-h-[250px] grid-cols-3 grid-rows-2 gap-2 p-2 pb-14">
-      <button
-        className="grid rounded-md text-xl place-content-center row-start-1 col-start-1 bg-green-500 hover:bg-green-700 transition text-white"
-        onClick={undo}
+      <TickButton
+        onTick={undo}
+        className="row-start-1 col-start-1"
       >
         <MdUndo />
-      </button>
-      <button
-        className="grid rounded-md text-xl place-content-center row-start-1 col-start-2 bg-green-500 hover:bg-green-700 transition text-white"
-        onClick={onDirectionButtonClick('up')}
+      </TickButton>
+      <TickButton
+        onTick={onButtonTick('up')}
+        className="row-start-1 col-start-2"
       >
         <MdKeyboardArrowUp />
-      </button>
-      <button
-        className="grid rounded-md text-xl place-content-center row-start-2 col-start-1 bg-green-500 hover:bg-green-700 transition text-white"
-        onClick={onDirectionButtonClick('left')}
+      </TickButton>
+      <HoldButton
+        onHoldEnded={reset}
+        className="row-start-1 col-start-3"
+      >
+        <MdReplay />
+      </HoldButton>
+      <TickButton
+        onTick={onButtonTick('left')}
+        className="row-start-2 col-start-1"
       >
         <MdKeyboardArrowLeft />
-      </button>
-      <button
-        className="grid rounded-md text-xl place-content-center row-start-2 col-start-2 bg-green-500 hover:bg-green-700 transition text-white"
-        onClick={onDirectionButtonClick('down')}
+      </TickButton>
+      <TickButton
+        onTick={onButtonTick('down')}
+        className="row-start-2 col-start-2"
       >
         <MdKeyboardArrowDown />
-      </button>
-      <button
-        className="grid rounded-md text-xl place-content-center row-start-2 col-start-3 bg-green-500 hover:bg-green-700 transition text-white"
-        onClick={onDirectionButtonClick('right')}
+      </TickButton>
+      <TickButton
+        onTick={onButtonTick('right')}
+        className="row-start-2 col-start-3"
       >
         <MdKeyboardArrowRight />
-      </button>
+      </TickButton>
     </div>
   )
 }

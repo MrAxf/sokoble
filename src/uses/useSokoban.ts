@@ -3,7 +3,16 @@ import { useContext } from 'react'
 import { SokobanContext } from '../providers/SokobanProvider'
 
 const useSokoban = () => {
-  const { board, boxes, meta, player, undoStack, setPlayer, setBoxes, setUndoStack } = useContext(SokobanContext)
+  const {
+    board,
+    boxes,
+    meta,
+    player,
+    undoStack,
+    setPlayer,
+    setBoxes,
+    setUndoStack,
+  } = useContext(SokobanContext)
 
   const movePlayer = (direction: Direction) => {
     const step = {
@@ -32,30 +41,58 @@ const useSokoban = () => {
       }
     })
 
-    const nextCellFree = Boolean(nextCell) && nextCell !== "BLOCK"
-    const pushNextCellFree = Boolean(pushNextCell) && pushNextCell !== "BLOCK"
+    const nextCellFree = Boolean(nextCell) && nextCell !== 'BLOCK'
+    const pushNextCellFree = Boolean(pushNextCell) && pushNextCell !== 'BLOCK'
 
-    if(nextBox === undefined && nextCellFree) {
-      setUndoStack([...undoStack, { player: { ...player } as Point, boxes: { ...boxes } }])
+    if (nextBox === undefined && nextCellFree) {
+      setUndoStack([...undoStack, { player: { ...player } as Point }])
       setPlayer(next)
       return
     }
 
-
-    if(nextBox !== undefined && nextPushBox === undefined && nextCellFree && pushNextCellFree) {
-      setUndoStack([...undoStack, { player: { ...player } as Point, boxes: { ...boxes } }])
+    if (
+      nextBox !== undefined &&
+      nextPushBox === undefined &&
+      nextCellFree &&
+      pushNextCellFree
+    ) {
+      setUndoStack([
+        ...undoStack,
+        { player: { ...player } as Point, box: [nextBox, boxes[nextBox]] },
+      ])
       setPlayer(next)
-      setBoxes({ ...boxes, [nextBox]: { ...pushNext, inButton: pushNextCell === "BUTTON" } })
+      setBoxes({
+        ...boxes,
+        [nextBox]: { ...pushNext, inButton: pushNextCell === 'BUTTON' },
+      })
     }
   }
 
   const undo = () => {
     const prevState = undoStack.at(-1)
-    if(prevState) {
+    if (prevState) {
       setUndoStack(undoStack.slice(0, -1))
       setPlayer(prevState.player)
-      setBoxes(prevState.boxes)
+      if (prevState.box) {
+        const [boxId, boxData] = prevState.box
+        setBoxes({ ...boxes, [boxId]: { ...boxData } })
+      }
     }
+  }
+
+  const reset = () => {
+    setPlayer({ ...board.player })
+    setBoxes(
+      board.boxes.reduce((prev, current, index) => {
+        return {
+          ...prev,
+          [index]: {
+            ...current,
+            inButton: board.board[current.y]?.[current.x] === 'BUTTON',
+          },
+        }
+      }, {})
+    )
   }
 
   return {
@@ -65,6 +102,7 @@ const useSokoban = () => {
     player,
     movePlayer,
     undo,
+    reset,
   }
 }
 

@@ -19,7 +19,7 @@ interface SokobanProviderState {
   }
   undoStack: {
     player: SokobanProviderState['player']
-    boxes: SokobanProviderState['boxes']
+    box?: [ number, Box ]
   }[]
 }
 
