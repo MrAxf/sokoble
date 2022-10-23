@@ -5,10 +5,6 @@ interface SokobanProviderProps {
   board: SokobanBoard
 }
 
-interface Box extends Point {
-  inButton: boolean
-}
-
 interface SokobanProviderState {
   player: Point
   boxes: { [key: number]: Box }
@@ -32,7 +28,7 @@ interface SokobanContextValue extends SokobanProviderState {
 }
 
 const defaultContextValues = {
-  board: { board: [], boxes: [], player: { x: 0, y: 0 } },
+  board: { name: '', board: [], boxes: [], player: { x: 0, y: 0 } },
   player: { x: 0, y: 0 },
   boxes: {},
   meta: {

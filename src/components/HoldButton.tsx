@@ -30,16 +30,22 @@ export default function HoldButton({
   }
 
   const initHold = async () => {
-    await controls.start({
-      width: '100%',
-      transition: {
-        duration: holdTime / 1000
-      }
-    })
-    onHoldEnded()
-    controls.start({
-      opacity: 0
-    })
+    try {
+      console.log("hola")
+      await controls.start({
+        width: '100%',
+        transition: {
+          duration: holdTime / 1000
+        }
+      })
+      onHoldEnded()
+      controls.start({
+        opacity: 0
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    console.log("adios")
   }
 
   const cancelHold = () => {

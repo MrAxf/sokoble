@@ -1,5 +1,3 @@
-import { useRecoilValue } from 'recoil'
-
 import { SokobanProvider } from '../providers/SokobanProvider'
 import SokobanContainer from './SokobanContainer'
 import SokobanControls from './SokobanControls'
@@ -9,6 +7,7 @@ export default function SokobanGame() {
   return (
     <SokobanProvider
       board={{
+        name: "test",
         board: [
           ['BLOCK', 'FREE',  'FREE',  'BLOCK', 'BLOCK',  'BLOCK',  'FREE',  'FREE' ],
           ['FREE',  'FREE',  'FREE',  'FREE',  'FREE',   'FREE',   'FREE',  'FREE' ],
