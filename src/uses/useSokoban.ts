@@ -93,6 +93,7 @@ const useSokoban = () => {
         }
       }, {})
     )
+    setUndoStack([])
   }
 
   return {
