@@ -4,6 +4,7 @@ import { Route, Router, Switch } from 'wouter'
 
 import MainLayout from './layouts/MainLayout'
 import PageLayout from './layouts/PageLayout'
+import useHashLocation from './uses/useHashLocation'
 
 const loadingFallback = (): ReactNode => (
   <div className="text-white tex-xl">Loading...</div>
@@ -17,7 +18,7 @@ const Help = lazy(() => import('./pages/Help'))
 function App() {
   return (
     <RecoilRoot>
-      <Router base="/sokoble">
+      <Router base="/sokoble" hook={useHashLocation}>
         <MainLayout>
           <PageLayout>
             <Suspense fallback={loadingFallback()}>
