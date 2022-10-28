@@ -1,4 +1,4 @@
-import level from './level.json'
+import level from './level2.json'
 
 const getLevel = async () => {
   const sokobanLevel = (await level) as SokobanBoard
