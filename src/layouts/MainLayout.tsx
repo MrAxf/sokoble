@@ -11,7 +11,7 @@ export default function MainLayout({ children }: PageLayoutProps) {
         <header className="flex flex-none flex-row justify-center bg-slate-900 py-2">
           <Navbar></Navbar>
         </header>
-        <main className="flex-auto bg-slate-800">
+        <main className="flex-auto bg-slate-800 overflow-hidden">
           {children}
         </main>
         <footer className="flex flex-none flex-row justify-center bg-slate-900 py-1">

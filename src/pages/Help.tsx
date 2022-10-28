@@ -1,3 +1,11 @@
+import { motion } from 'framer-motion'
+
+import pageAnimation from '../utils/pageAnimation'
+
 export default function Help() {
-  return <div className="text-white tex-xl">Help</div>
+  return (
+    <motion.div key="help" {...pageAnimation} className="text-white tex-xl">
+      Help
+    </motion.div>
+  )
 }

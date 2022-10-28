@@ -1,4 +1,12 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+
+import {
+  currentGameBoxes,
+  currentGameName,
+  currentGamePlayer,
+  currentGameUndos,
+} from '../store/currentGame'
 
 interface SokobanProviderProps {
   children: ReactNode
@@ -15,7 +23,7 @@ interface SokobanProviderState {
   }
   undoStack: {
     player: SokobanProviderState['player']
-    box?: [ number, Box ]
+    box?: [number, Box]
   }[]
 }
 
@@ -49,17 +57,12 @@ export const SokobanContext = createContext<SokobanContextValue>({
 
 export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
   const [ready, setReady] = useState(false)
-  const [player, setPlayer] = useState<SokobanProviderState['player']>(
-    defaultContextValues.player
-  )
-  const [boxes, setBoxes] = useState<SokobanProviderState['boxes']>(
-    defaultContextValues.boxes
-  )
+  const [gameName, setGameName] = useRecoilState(currentGameName)
+  const [player, setPlayer] = useRecoilState(currentGamePlayer)
+  const [boxes, setBoxes] = useRecoilState(currentGameBoxes)
+  const [undoStack, setUndoStack] = useRecoilState(currentGameUndos)
   const [meta, setMeta] = useState<SokobanProviderState['meta']>(
     defaultContextValues.meta
-  )
-  const [undoStack, setUndoStack] = useState<SokobanProviderState['undoStack']>(
-    []
   )
 
   useEffect(() => {
@@ -75,20 +78,28 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
       right: 1 + Math.ceil(halfXWalls),
     }
 
-    setPlayer({ ...board.player })
-    setBoxes(
-      board.boxes.reduce((prev, current, index) => {
-        return {
-          ...prev,
-          [index]: { ...current, inButton: board.board[current.y]?.[current.x] === "BUTTON" },
-        }
-      }, {})
-    )
     setMeta({
       size,
       squarePercent: 100 / (size + 2),
       walls,
     })
+
+    if (board.name !== gameName) {
+      setGameName(board.name)
+      setPlayer({ ...board.player })
+      setBoxes(
+        board.boxes.reduce((prev, current, index) => {
+          return {
+            ...prev,
+            [index]: {
+              ...current,
+              inButton: board.board[current.y]?.[current.x] === 'BUTTON',
+            },
+          }
+        }, {})
+      )
+      setUndoStack([])
+    }
     setReady(true)
     return () => {
       setReady(false)

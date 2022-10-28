@@ -1,3 +1,11 @@
+import { motion } from 'framer-motion'
+
+import pageAnimation from '../utils/pageAnimation'
+
 export default function Stats() {
-  return <div className="text-white tex-xl">Stats</div>
+  return (
+    <motion.div key="stats" {...pageAnimation} className="text-white tex-xl">
+      Stats
+    </motion.div>
+  )
 }
