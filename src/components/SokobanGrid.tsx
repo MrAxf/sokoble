@@ -9,12 +9,12 @@ export default function SokobanGrid() {
 
   const renderCell = (cell: SokobanCell, key: string) =>
     ({
-      BLOCK: <div key={key} className="bg-purple-900 aspect-square"></div>,
-      FREE: <div key={key} className="bg-purple-300 aspect-square"></div>,
+      BLOCK: <div key={key} className="bg-transparent aspect-square"></div>,
+      FREE: <div key={key} className="bg-primary-light aspect-square"></div>,
       BUTTON: (
         <div
           key={key}
-          className="bg-purple-300 aspect-square after:content-[''] after:bg-purple-50 after:rounded-full after:m-[25%] after:block after:w-1/2 after:h-1/2"
+          className="bg-primary-light aspect-square after:content-[''] after:bg-white after:rounded-full after:m-[25%] after:block after:w-1/2 after:h-1/2"
         ></div>
       ),
     }[cell])
@@ -49,7 +49,7 @@ export default function SokobanGrid() {
   return (
     <div
       role="grid"
-      className="grid w-full flex-grow-0 aspect-square rounded-xl border-4 border-violet-600 max-w-full max-h-full relative overflow-hidden"
+      className="bg-gradient-to-br from-primary-dark to-secondary-dark grid w-full flex-grow-0 aspect-square rounded-xl border-8 border-primary-main max-w-full max-h-full relative overflow-hidden"
       style={{
         gridTemplateColumns: `repeat(${(meta.size || 0) + 2}, 1fr)`,
       }}

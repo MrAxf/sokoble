@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  body {
+    background-color: theme(colors.slate.100);
+    color: theme(colors.slate.800);
+  }
+
+  html.dark body {
+    background-color: theme(colors.slate.800);
+    color: theme(colors.slate.100);
+  }
+}

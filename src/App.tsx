@@ -9,7 +9,7 @@ import currentBoard from './store/currentBoard'
 import useHashLocation from './uses/useHashLocation'
 
 const loadingFallback = (): ReactNode => (
-  <div className="text-white tex-xl">Loading...</div>
+  <div className="text-xl">Loading...</div>
 )
 
 const Index = lazy(() => import('./pages/Index'))

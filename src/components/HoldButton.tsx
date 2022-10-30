@@ -1,5 +1,6 @@
 import { motion, useAnimationControls } from 'framer-motion'
 import { MouseEvent, ReactNode, TouchEvent, useEffect } from 'react'
+
 import isTouchAviable from '../utils/isTouchAviable'
 
 interface HoldButtonProps {
@@ -18,47 +19,47 @@ export default function HoldButton({
   const controls = useAnimationControls()
 
   const onMouseHold = (evt: MouseEvent<HTMLButtonElement>) => {
-    if(isTouchAviable()) return
+    if (isTouchAviable()) return
     evt.preventDefault()
     if (evt.button === 0) initHold()
   }
 
   const onTouchHold = (evt: TouchEvent<HTMLButtonElement>) => {
-    if(!isTouchAviable()) return
+    if (!isTouchAviable()) return
     evt.stopPropagation()
     initHold()
   }
 
   const initHold = async () => {
     try {
-      console.log("hola")
+      console.log('hola')
       await controls.start({
         width: '100%',
         transition: {
-          duration: holdTime / 1000
-        }
+          duration: holdTime / 1000,
+        },
       })
       onHoldEnded()
       controls.start({
-        opacity: 0
+        opacity: 0,
       })
     } catch (error) {
       console.log(error)
     }
-    console.log("adios")
+    console.log('adios')
   }
 
   const cancelHold = () => {
     controls.stop()
     controls.set({
       width: '0%',
-      opacity: 1
+      opacity: 1,
     })
   }
 
   return (
     <button
-      className={`relative overflow-hidden grid rounded-md text-xl place-content-center bg-green-500 hover:bg-green-700 transition text-white ${className}`}
+      className={`relative overflow-hidden grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition text-white ${className}`}
       onMouseDown={onMouseHold}
       onTouchStart={onTouchHold}
       onMouseUp={cancelHold}
@@ -66,11 +67,11 @@ export default function HoldButton({
       onTouchEnd={cancelHold}
     >
       <motion.span
-        className="absolute h-full bg-blue-500"
+        className="absolute h-full bg-secondary-light"
         initial={{ width: '0%' }}
         animate={controls}
       ></motion.span>
-      <span className='z-10'>{children}</span>
+      <span className="z-10">{children}</span>
     </button>
   )
 }

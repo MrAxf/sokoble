@@ -1,23 +1,12 @@
-const nivel =
-  '############       |' +
-  '#..  #     ###     |' +
-  '#..  # $  $  #     |' +
-  '#..  #$####  #     |' +
-  '#..    @ ##  #     |' +
-  '#..  # #  $ ##     |' +
-  '###### ##$ $ #     |' +
-  '  # $  $ $ $ #     |' +
-  '  #    #     #     |' +
-  '  ############     '
-
-const toLevel = (plane, name) => {
-  const level = {
+const toLevel = (plane: string, name: string) => {
+  const level: SokobanBoard = {
     name,
     board: [],
-    boxes: []
+    boxes: [],
+    player: { x: 0, y: 0 },
   }
   const unoptimizedBoard = []
-  let row = []
+  let row:SokobanCell[] = []
   let lastCol = -1
   let x = -1
   let y = -1
@@ -63,8 +52,7 @@ const toLevel = (plane, name) => {
     const levelRow = unoptimizedBoard[i]
     level.board.push(levelRow.slice(1, lastCol))
   }
-  console.log(JSON.stringify(level))
   return level
 }
 
-toLevel(nivel, 'prueba')
+export default toLevel

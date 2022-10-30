@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 
 import { SokobanContext } from '../providers/SokobanProvider'
 
@@ -96,14 +96,20 @@ const useSokoban = () => {
     setUndoStack([])
   }
 
+  const movements = useMemo(() => undoStack.length, [undoStack])
+
+  const hasWin = useMemo(() => Object.entries(boxes).findIndex(([, box]) => !box.inButton) === -1, [boxes])
+
   return {
     board,
     boxes,
     meta,
     player,
+    movements,
+    hasWin,
     movePlayer,
     undo,
-    reset,
+    reset
   }
 }
 

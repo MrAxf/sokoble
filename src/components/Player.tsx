@@ -7,7 +7,7 @@ export default function Player() {
 
   return (
     <motion.div
-      className="absolute aspect-square rounded-full bg-yellow-600"
+      className="absolute aspect-square rounded-full bg-player"
       style={{ width: `${meta.squarePercent}%` }}
       animate={{
         left: `${(meta.walls.left + player.x) * meta.squarePercent}%`,

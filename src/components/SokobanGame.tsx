@@ -2,6 +2,7 @@ import { SokobanProvider } from '../providers/SokobanProvider'
 import SokobanContainer from './SokobanContainer'
 import SokobanControls from './SokobanControls'
 import SokobanGrid from './SokobanGrid'
+import SokobanStats from './sokobanStats'
 
 interface SokobanGameProps {
   board: SokobanBoard
@@ -12,7 +13,7 @@ export default function SokobanGame({ board }: SokobanGameProps) {
     <SokobanProvider board={board}>
       <SokobanContainer>
         <SokobanGrid />
-        <div className="flex-grow"></div>
+        <SokobanStats></SokobanStats>
         <SokobanControls />
       </SokobanContainer>
     </SokobanProvider>
