@@ -1,0 +1,1 @@
+import{m as t,p as a}from"./pageAnimation.8992af32.js";import{j as s}from"./index.0888f01f.js";function o(){return s(t.div,{...a,className:"text-white tex-xl",children:"Stats"},"stats")}export{o as default};

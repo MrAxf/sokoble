@@ -1,1 +1,0 @@
-import{m as e,p as t}from"./pageAnimation.d0174b45.js";import{j as a}from"./index.4d60ac66.js";function m(){return a(e.div,{...t,className:"text-white tex-xl",children:"Help"},"help")}export{m as default};
