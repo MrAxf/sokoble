@@ -44,7 +44,7 @@ export const ThemeProvider = ({
   initialTheme,
   children,
 }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState(getInitialTheme)
+  const [theme, setTheme] = useState(initialTheme)
 
   const rawSetTheme = (theme: ColorTheme) => {
     const root = window.document.documentElement
@@ -54,10 +54,6 @@ export const ThemeProvider = ({
     root.classList.add(theme)
 
     localStorage.setItem('color-theme', theme)
-  }
-
-  if (initialTheme) {
-    rawSetTheme(initialTheme)
   }
 
   useEffect(() => {

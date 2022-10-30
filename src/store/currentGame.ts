@@ -2,20 +2,20 @@ import { atom, selector } from 'recoil'
 
 const gameName = atom({
   key: 'gameName',
-  default: globalThis.localStorage.getItem('gameName') || '',
+  default: globalThis.localStorage?.getItem('gameName') || '',
 })
 
 const gamePlayer = atom<Point>({
   key: 'gamePlayer',
   default: (JSON.parse(
-    globalThis.localStorage.getItem('gamePlayer') || 'false'
+    globalThis.localStorage?.getItem('gamePlayer') || 'false'
   ) as Point) || { x: 0, y: 0 },
 })
 
 const gameBoxes = atom<{ [key: number]: Box }>({
   key: 'gameBoxes',
   default:
-    (JSON.parse(globalThis.localStorage.getItem('gameBoxes') || 'false') as {
+    (JSON.parse(globalThis?.localStorage?.getItem('gameBoxes') || 'false') as {
       [key: number]: Box
     }) || {},
 })
@@ -23,7 +23,7 @@ const gameBoxes = atom<{ [key: number]: Box }>({
 const gameUndos = atom<{player: Point, box?: [number, Box] }[]>({
   key: 'gameUndos',
   default:
-    (JSON.parse(globalThis.localStorage.getItem('gameUndos') || 'false') as {
+    (JSON.parse(globalThis?.localStorage?.getItem('gameUndos') || 'false') as {
       player: Point
       box?: [number, Box]
     }[]) || [],
