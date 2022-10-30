@@ -2,7 +2,7 @@ import { SokobanProvider } from '../providers/SokobanProvider'
 import SokobanContainer from './SokobanContainer'
 import SokobanControls from './SokobanControls'
 import SokobanGrid from './SokobanGrid'
-import SokobanStats from './sokobanStats'
+import SokobanStats from './SokobanStats'
 
 interface SokobanGameProps {
   board: SokobanBoard
