@@ -62,7 +62,7 @@ export default function TickButton({
   }
   return (
     <button
-      className={`grid rounded-md text-xl place-content-center bg-green-500 hover:bg-green-700 transition text-white ${className}`}
+      className={`grid rounded-md text-xl place-content-center bg-se hover:bg-secondary-dark transition text-white ${className}`}
       onMouseDown={enableMouseTick}
       onTouchStart={enableTouchTick}
       onMouseLeave={disableTick}
