@@ -614,7 +614,7 @@ const levels = [
 
 const getRandomLevel = () => {
   let seed = Math.floor(Math.random() * levels.length)
-  // seed = 19
+  seed = 19
   return toLevel(levels[seed], `level${seed}`)
 }
 export default getRandomLevel

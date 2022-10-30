@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { RecoilRoot } from 'recoil'
+import CurrentSokobanBoard from '../components/CurrentSokobanBoard'
 
 import MainLayout from '../layouts/MainLayout'
 import PageLayout from '../layouts/PageLayout'
@@ -8,6 +9,7 @@ import { ThemeProvider } from '../providers/DarkThemeProvider'
 import '../styles/index.css'
 
 export default function App({ Component, pageProps }: AppProps) {
+
   return (
     <RecoilRoot>
       <ThemeProvider initialTheme="dark">
@@ -20,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
           />
           <title>Sokoble</title>
         </Head>
+        <CurrentSokobanBoard />
         <MainLayout>
           <PageLayout>
             <Component {...pageProps} />
