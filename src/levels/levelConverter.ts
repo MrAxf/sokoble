@@ -52,6 +52,7 @@ const toLevel = (plane: string, name: string) => {
     const levelRow = unoptimizedBoard[i]
     level.board.push(levelRow.slice(1, lastCol))
   }
+  console.log(level)
   return level
 }
 

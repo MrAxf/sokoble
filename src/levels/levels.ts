@@ -1,4 +1,6 @@
 import toLevel from './levelConverter'
+import { doc, setDoc } from 'firebase/firestore'
+import firebase from '../firebase'
 
 const levels = [
   '    #####          |' +
@@ -615,6 +617,7 @@ const levels = [
 const getRandomLevel = () => {
   let seed = Math.floor(Math.random() * levels.length)
   seed = 19
-  return toLevel(levels[seed], `level${seed}`)
+  const level = toLevel(levels[seed], `level${seed}`)
+  setDoc(doc(firebase, 'levels', ''), level)
 }
 export default getRandomLevel
