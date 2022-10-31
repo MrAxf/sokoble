@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "test": "vitest",
-    "deploy": "tsc && vite build && gh-pages -d dist"
+    "deploy": "nex build && next export && gh-pages -d dist"
   },
   "dependencies": {
     "firebase": "^9.13.0",
