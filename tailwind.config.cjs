@@ -19,9 +19,9 @@ module.exports = {
           }
         },
         secondary: {
-          dark: '#303F9F',
-          main: '#3F51B5',
-          light: '#C5CAE9'
+          dark: '#1976D2',
+          main: '#2196F3',
+          light: '#BBDEFB'
         },
         player: '#F57C00'
       }

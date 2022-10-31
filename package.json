@@ -11,6 +11,7 @@
     "deploy": "nex build && next export && gh-pages -d dist"
   },
   "dependencies": {
+    "@next/font": "^13.0.0",
     "firebase": "^9.13.0",
     "framer-motion": "^7.5.3",
     "next": "^13.0.0",

@@ -1,5 +1,10 @@
 import { ReactNode } from "react"
 import Navbar from "../components/Navbar"
+import { Open_Sans } from '@next/font/google'
+
+const openSans = Open_Sans({
+  weight: "variable"
+})
 
 type PageLayoutProps = {
   children: ReactNode
@@ -7,7 +12,7 @@ type PageLayoutProps = {
 
 export default function MainLayout({ children }: PageLayoutProps) {
   return (
-    <div className="flex h-screen flex-col">
+    <div className={`flex h-screen flex-col ${openSans.className}`}>
         <header className="flex flex-none flex-row justify-center bg-slate-200 dark:bg-slate-900 py-2">
           <Navbar></Navbar>
         </header>
