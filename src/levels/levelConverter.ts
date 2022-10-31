@@ -6,7 +6,7 @@ const toLevel = (plane: string, name: string) => {
     player: { x: 0, y: 0 },
   }
   const unoptimizedBoard = []
-  let row:SokobanCell[] = []
+  let row: SokobanCell[] = []
   let lastCol = -1
   let x = -1
   let y = -1
@@ -24,6 +24,11 @@ const toLevel = (plane: string, name: string) => {
 
       case '.':
         row.push('BUTTON')
+        break
+
+      case '*':
+        row.push('BUTTON')
+        level.boxes.push({ x: x - 1, y })
         break
 
       case '$':
@@ -52,7 +57,6 @@ const toLevel = (plane: string, name: string) => {
     const levelRow = unoptimizedBoard[i]
     level.board.push(levelRow.slice(1, lastCol))
   }
-  console.log(level)
   return level
 }
 

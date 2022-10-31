@@ -32,7 +32,6 @@ export default function HoldButton({
 
   const initHold = async () => {
     try {
-      console.log('hola')
       await controls.start({
         width: '100%',
         transition: {
@@ -46,7 +45,6 @@ export default function HoldButton({
     } catch (error) {
       console.log(error)
     }
-    console.log('adios')
   }
 
   const cancelHold = () => {

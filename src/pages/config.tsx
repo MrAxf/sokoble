@@ -1,17 +1,17 @@
 import Switch from '../components/Switch'
-import useTheme from '../uses/useTheme'
+import { useTheme } from 'next-themes'
 
 export default function Config() {
-  const { theme, toggle } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   const onThemeChange = () => {
-    toggle()
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
   return (
     <div className="text-xl">
       <Switch
-        label={theme}
+        label="Cambiar modo"
         checked={theme === 'dark'}
         onChange={onThemeChange}
       ></Switch>

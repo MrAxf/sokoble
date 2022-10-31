@@ -2,17 +2,17 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { RecoilRoot } from 'recoil'
 import CurrentSokobanBoard from '../components/CurrentSokobanBoard'
+import { ThemeProvider } from 'next-themes'
 
 import MainLayout from '../layouts/MainLayout'
 import PageLayout from '../layouts/PageLayout'
-import { ThemeProvider } from '../providers/DarkThemeProvider'
 import '../styles/index.css'
 
 export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <ThemeProvider initialTheme="dark">
+      <ThemeProvider enableSystem={true} attribute='class'>
         <Head>
           <meta charSet="UTF-8" />
           <link rel="icon" type="image/svg+xml" href="/vite.svg" />
