@@ -17,9 +17,13 @@ export default function SokobanContainer({ children }: SokobanContainerProps) {
     } else {
       const direction = {
         ArrowUp: 'up',
+        w: 'up',
         ArrowDown: 'down',
+        s: 'down',
         ArrowLeft: 'left',
+        a: 'left',
         ArrowRight: 'right',
+        d: 'right',
       }[evt.key]
 
       if (direction) movePlayer(direction as Direction)
