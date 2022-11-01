@@ -3,8 +3,8 @@ import { createClient } from '@supabase/supabase-js'
 import levels from './classic.js'
 
 const supabase = createClient(
-  'https://ivrwfudnqbhnzzsdftfk.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2cndmdWRucWJobnp6c2RmdGZrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY2NzMyNTk0MSwiZXhwIjoxOTgyOTAxOTQxfQ.UgdXa6PHAlWv37-6yxJGwOg6wZRANmUYiELkJtkMz1M',
+  '',
+  '',
   { db: { schema: 'public' } }
 )
 
