@@ -1,7 +1,7 @@
-import getRandomLevel from "../levels/levels"
 
 const getLevel = async () => {
-  const sokobanLevel = await getRandomLevel()
+  const sokobanResponse = await fetch('/api/level')
+  const sokobanLevel = (await sokobanResponse.json()) as SokobanBoard
   return sokobanLevel
 }
 
