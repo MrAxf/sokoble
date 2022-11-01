@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider enableSystem={true} attribute='class'>
         <Head>
           <meta charSet="UTF-8" />
-          <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+          <link rel="icon" type="image/svg+xml" href="/sokoble.svg" />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"

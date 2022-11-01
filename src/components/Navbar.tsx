@@ -1,5 +1,11 @@
 import Link from 'next/link'
 import { MdHelp, MdOutlinePoll, MdSettings } from 'react-icons/md'
+import { Open_Sans } from '@next/font/google'
+
+const logoFont = Open_Sans({
+  weight: "800",
+  subsets: ["latin"]
+})
 
 export default function Navbar() {
   return (
@@ -16,7 +22,7 @@ export default function Navbar() {
         href="/"
         className="flex-none cursor-pointer grid place-items-center rounded-md p-2 transition hover:bg-gray-500 hover:bg-opacity-50"
       >
-        <h1 className="bg-gradient-to-br from-primary-main to-secondary-main bg-clip-text text-center text-4xl font-bold text-transparent">
+        <h1 className={`bg-gradient-to-br from-primary-main to-secondary-main bg-clip-text text-center text-4xl font-bold text-transparent ${logoFont.className}`}>
           Sokoble
         </h1>
       </Link>
