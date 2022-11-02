@@ -19,7 +19,7 @@ export default async function handler(req: NextRequest) {
     (today.getTime() - baseDate.getTime()) / (1000 * 3600 * 24)
   )
 
-  const levelNo = (day * 51) % count
+  const levelNo = (day * 53) % count
 
   const { data } = await supabase
     .from('levels')
