@@ -1,4 +1,3 @@
-import { MouseEvent, useRef } from 'react'
 import {
   MdKeyboardArrowDown,
   MdKeyboardArrowLeft,
@@ -13,8 +12,7 @@ import HoldButton from './HoldButton'
 import TickButton from './TickButton'
 
 export default function SokobanControls() {
-  const { movePlayer, undo, reset } = useSokoban()
-  const actionInterval = useRef<number | undefined>()
+  const { movePlayer, undo, reset, hasWin } = useSokoban()
 
   const onButtonTick = (direction: Direction) => () => {
     movePlayer(direction)
@@ -25,36 +23,42 @@ export default function SokobanControls() {
       <TickButton
         onTick={undo}
         className="row-start-1 col-start-1"
+        disabled={hasWin}
       >
         <MdUndo />
       </TickButton>
       <TickButton
         onTick={onButtonTick('up')}
         className="row-start-1 col-start-2"
+        disabled={hasWin}
       >
         <MdKeyboardArrowUp />
       </TickButton>
       <HoldButton
         onHoldEnded={reset}
         className="row-start-1 col-start-3"
+        disabled={hasWin}
       >
         <MdReplay />
       </HoldButton>
       <TickButton
         onTick={onButtonTick('left')}
         className="row-start-2 col-start-1"
+        disabled={hasWin}
       >
         <MdKeyboardArrowLeft />
       </TickButton>
       <TickButton
         onTick={onButtonTick('down')}
         className="row-start-2 col-start-2"
+        disabled={hasWin}
       >
         <MdKeyboardArrowDown />
       </TickButton>
       <TickButton
         onTick={onButtonTick('right')}
         className="row-start-2 col-start-3"
+        disabled={hasWin}
       >
         <MdKeyboardArrowRight />
       </TickButton>

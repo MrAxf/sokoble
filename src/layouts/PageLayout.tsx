@@ -3,10 +3,15 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
-import pageAnimation from '../utils/pageAnimation'
-
 type PageLayoutProps = {
   children: ReactNode
+}
+
+const pageAnimation = {
+  initial: { opacity: 0, x: '-100%' },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: '100%' },
+  transition: { duration: 0.2 },
 }
 
 export default function PageLayout({ children }: PageLayoutProps) {

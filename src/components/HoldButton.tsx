@@ -8,6 +8,7 @@ interface HoldButtonProps {
   holdTime?: number
   children: ReactNode
   className?: string
+  disabled?: boolean
 }
 
 export default function HoldButton({
@@ -15,6 +16,7 @@ export default function HoldButton({
   holdTime = 2000,
   children,
   className = '',
+  disabled = false,
 }: HoldButtonProps) {
   const controls = useAnimationControls()
 
@@ -57,12 +59,13 @@ export default function HoldButton({
 
   return (
     <button
-      className={`relative overflow-hidden grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition text-white ${className}`}
+      className={`relative overflow-hidden grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition disabled:opacity-50 text-white ${className}`}
       onMouseDown={onMouseHold}
       onTouchStart={onTouchHold}
       onMouseUp={cancelHold}
       onMouseLeave={cancelHold}
       onTouchEnd={cancelHold}
+      disabled={disabled}
     >
       <motion.span
         className="absolute h-full bg-secondary-light"

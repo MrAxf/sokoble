@@ -7,6 +7,7 @@ interface TickButtonProps {
   interval?: number
   tickTimeout?: number
   className?: string
+  disabled?: boolean
 }
 
 export default function TickButton({
@@ -14,7 +15,8 @@ export default function TickButton({
   onTick,
   interval = 100,
   className = "",
-  tickTimeout = 500
+  tickTimeout = 500,
+  disabled = false
 }: TickButtonProps) {
   const actionInterval = useRef<number | undefined>()
   const startTimeout = useRef<number | undefined>()
@@ -62,12 +64,13 @@ export default function TickButton({
   }
   return (
     <button
-      className={`grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition text-white ${className}`}
+      className={`grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition text-white disabled:opacity-50 ${className}`}
       onMouseDown={enableMouseTick}
       onTouchStart={enableTouchTick}
       onMouseLeave={disableTick}
       onMouseUp={disableTick}
       onTouchEnd={disableTick}
+      disabled={disabled}
     >
       {children}
     </button>

@@ -14,6 +14,7 @@ export default function SokobanGame({ board }: SokobanGameProps) {
       <SokobanContainer>
         <SokobanGrid />
         <SokobanStats></SokobanStats>
+        <div className="flex-grow"></div>
         <SokobanControls />
       </SokobanContainer>
     </SokobanProvider>

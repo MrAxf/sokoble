@@ -8,11 +8,12 @@ type SokobanContainerProps = {
 
 export default function SokobanContainer({ children }: SokobanContainerProps) {
   const container = useRef<HTMLDivElement | null>(null)
-  const { movePlayer, undo } = useSokoban()
+  const { movePlayer, undo, hasWin } = useSokoban()
 
   const onContainerKeyDown = (evt: KeyboardEvent<HTMLDivElement>) => {
-    evt.preventDefault();
-    if(evt.ctrlKey && evt.key === 'z') {
+    evt.preventDefault()
+    if (hasWin) return
+    else if (evt.ctrlKey && evt.key === 'z') {
       undo()
     } else {
       const direction = {
