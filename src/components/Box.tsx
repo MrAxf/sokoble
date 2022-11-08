@@ -23,8 +23,8 @@ export default function Box({ x, y, inButton }: BoxProps) {
           x: meta.walls.left + x,
           y: meta.walls.top + y,
           fill: inButton
-            ? tailwindData.theme.colors.box.success.primary
-            : tailwindData.theme.colors.box.primary,
+            ? tailwindData.theme.colors["box"].success.primary
+            : tailwindData.theme.colors["box"].primary,
         }}
       ></motion.rect>
       <motion.rect
@@ -36,8 +36,8 @@ export default function Box({ x, y, inButton }: BoxProps) {
           x: meta.walls.left + x + 0.25,
           y: meta.walls.top + y + 0.25,
           fill: inButton
-            ? tailwindData.theme.colors.box.success.secondary
-            : tailwindData.theme.colors.box.secondary,
+            ? tailwindData.theme.colors["box"].success.secondary
+            : tailwindData.theme.colors["box"].secondary,
         }}
       ></motion.rect>
     </>
