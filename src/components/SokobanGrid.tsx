@@ -1,64 +1,89 @@
-import { ReactNode, useCallback } from 'react'
+import { Fragment, useCallback } from 'react'
 
 import useSokoban from '../uses/useSokoban'
+import tailwindData from '../utils/tailwindData'
 import Box from './Box'
 import Player from './Player'
 
 export default function SokobanGrid() {
   const { meta, board, boxes } = useSokoban()
 
-  const renderCell = (cell: SokobanCell, key: string) =>
+  const renderCell = (cell: SokobanCell, x: number, y: number) =>
     ({
-      BLOCK: <div key={key} className="bg-transparent aspect-square"></div>,
-      FREE: <div key={key} className="bg-primary-light aspect-square"></div>,
+      BLOCK: undefined,
+      FREE: (
+        <rect
+          key={`${x}-${y}`}
+          x={x + meta.walls.left}
+          y={y + meta.walls.top}
+          width="1"
+          height="1"
+          style={{
+            fill: tailwindData.theme.colors.primary.light,
+            strokeWidth: 0.05,
+            stroke: tailwindData.theme.colors.primary.light,
+          }}
+        />
+      ),
       BUTTON: (
-        <div
-          key={key}
-          className="bg-primary-light aspect-square after:content-[''] after:bg-white after:rounded-full after:m-[25%] after:block after:w-1/2 after:h-1/2"
-        ></div>
+        <Fragment key={`${x}-${y}`}>
+          <rect
+            x={x + meta.walls.left}
+            y={y + meta.walls.top}
+            width="1"
+            height="1"
+            style={{
+              fill: tailwindData.theme.colors.primary.light,
+              strokeWidth: 0.05,
+              stroke: tailwindData.theme.colors.primary.light,
+            }}
+          />
+          <circle
+            cx={x + meta.walls.left + 0.5}
+            cy={y + meta.walls.top + 0.5}
+            r="0.25"
+            style={{ fill: 'white' }}
+          />
+        </Fragment>
       ),
     }[cell])
 
   const renderBoard = useCallback(() => {
     if (!meta.size) return null
-    let index = 0
 
     return [
-      ...Array(meta.walls.top * (meta.size + 2))
-        .fill('')
-        .map(() => renderCell('BLOCK', String(index++))),
-
       ...board.board
-        .map((row) => [
-          ...Array(meta.walls.left)
-            .fill('')
-            .map(() => renderCell('BLOCK', String(index++))),
-          ...row.map((item) => renderCell(item, String(index++))),
-          ...Array(meta.walls.right)
-            .fill('')
-            .map(() => renderCell('BLOCK', String(index++))),
+        .map((row, y) => [
+          ...row.reduce<JSX.Element[]>((prev, curr, x) => {
+            const render = renderCell(curr, x, y)
+            if (render) {
+              return [...prev, render]
+            }
+            return prev
+          }, []),
         ])
         .flat(),
-
-      ...Array(meta.walls.bottom * (meta.size + 2))
-        .fill('')
-        .map(() => renderCell('BLOCK', String(index++))),
     ]
   }, [meta])
 
   return (
     <div
       role="grid"
-      className="bg-gradient-to-br from-primary-dark to-secondary-dark grid w-full flex-grow-0 aspect-square rounded-xl border-8 border-primary-main max-w-full max-h-full relative overflow-hidden"
-      style={{
-        gridTemplateColumns: `repeat(${(meta.size || 0) + 2}, 1fr)`,
-      }}
+      className="bg-gradient-to-br from-primary-dark to-secondary-dark w-full flex-none aspect-square rounded-xl border-8 border-primary-main max-w-full max-h-full relative overflow-hidden"
     >
-      {renderBoard()}
-      <Player />
-      {Object.entries(boxes).map(([id, box]) => (
-        <Box key={id} {...box} />
-      ))}
+      {/* {renderBoard()} */}
+      <svg
+        width={meta.size + 2}
+        height={meta.size + 2}
+        viewBox={`0 0 ${meta.size + 2} ${meta.size + 2}`}
+        className="w-full h-full"
+      >
+        {renderBoard()}
+        <Player />
+        {Object.entries(boxes).map(([id, box]) => (
+          <Box key={id} {...box} />
+        ))}
+      </svg>
     </div>
   )
 }
