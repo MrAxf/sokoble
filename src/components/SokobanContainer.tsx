@@ -8,11 +8,11 @@ type SokobanContainerProps = {
 
 export default function SokobanContainer({ children }: SokobanContainerProps) {
   const container = useRef<HTMLDivElement | null>(null)
-  const { movePlayer, undo, hasWin } = useSokoban()
+  const { movePlayer, undo, gameCompleted } = useSokoban()
 
   const onContainerKeyDown = (evt: KeyboardEvent<HTMLDivElement>) => {
     evt.preventDefault()
-    if (hasWin) return
+    if (gameCompleted) return
     else if (evt.ctrlKey && evt.key === 'z') {
       undo()
     } else {
@@ -38,7 +38,7 @@ export default function SokobanContainer({ children }: SokobanContainerProps) {
   return (
     <div
       tabIndex={0}
-      className="h-full p-5 flex flex-col"
+      className="h-full flex flex-col focus-visible:outline-0"
       ref={container}
       onKeyDown={onContainerKeyDown}
     >

@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect, useState } from 'react'
+import { ReactNode, createContext, useEffect, useMemo, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 import {
@@ -7,6 +7,7 @@ import {
   currentGamePlayer,
   currentGameUndos,
 } from '../store/currentGame'
+import { gamesCompleted, gamesPlayed } from '../store/gameStats'
 
 interface SokobanProviderProps {
   children: ReactNode
@@ -33,6 +34,7 @@ interface SokobanContextValue extends SokobanProviderState {
   setBoxes: React.Dispatch<SokobanProviderState['boxes']>
   setMeta: React.Dispatch<SokobanProviderState['meta']>
   setUndoStack: React.Dispatch<SokobanProviderState['undoStack']>
+  gameCompleted: boolean
 }
 
 const defaultContextValues = {
@@ -49,6 +51,7 @@ const defaultContextValues = {
   setBoxes: () => {},
   setMeta: () => {},
   setUndoStack: () => {},
+  gameCompleted: false,
 }
 
 export const SokobanContext = createContext<SokobanContextValue>({
@@ -64,6 +67,16 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
   const [meta, setMeta] = useState<SokobanProviderState['meta']>(
     defaultContextValues.meta
   )
+  const [, setGamesPlayed] = useRecoilState(gamesPlayed)
+  const [, setGamesCompleted] = useRecoilState(gamesCompleted)
+
+  const gameCompleted = useMemo(() => {
+    const boxesArr = Object.entries(boxes)
+    return (
+      boxesArr.length !== 0 &&
+      boxesArr.findIndex(([, box]) => !box.inButton) === -1
+    )
+  }, [boxes])
 
   useEffect(() => {
     const size = Math.max(board.board.length, board.board[0]?.length)
@@ -85,6 +98,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
     })
 
     if (board.name !== gameName) {
+      setGamesPlayed((prev) => prev + 1)
       setGameName(board.name)
       setPlayer({ ...board.player })
       setBoxes(
@@ -106,6 +120,13 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
     }
   }, [board])
 
+  useEffect(() => {
+    console.log(gameCompleted)
+    if (gameCompleted) {
+      setGamesCompleted((prev) => prev + 1)
+    }
+  }, [gameCompleted])
+
   return (
     <SokobanContext.Provider
       value={{
@@ -118,6 +139,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
         setBoxes,
         setMeta,
         setUndoStack,
+        gameCompleted,
       }}
     >
       {ready && children}

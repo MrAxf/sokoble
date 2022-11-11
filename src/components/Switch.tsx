@@ -24,7 +24,7 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
           <div className={`${styles.dot} absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition`}></div>
         </div>
-        <div className="ml-3 font-medium">{label}</div>
+        <div className="ml-3 flex-grow text-right">{label}</div>
       </label>
     )
   }

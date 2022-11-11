@@ -11,7 +11,7 @@ export default function Config() {
   return (
     <div className="text-xl">
       <Switch
-        label="Cambiar modo"
+        label="Modo oscuro"
         checked={theme === 'dark'}
         onChange={onThemeChange}
       ></Switch>

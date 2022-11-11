@@ -12,6 +12,7 @@ const useSokoban = () => {
     setPlayer,
     setBoxes,
     setUndoStack,
+    gameCompleted,
   } = useContext(SokobanContext)
 
   const movePlayer = (direction: Direction) => {
@@ -98,18 +99,16 @@ const useSokoban = () => {
 
   const movements = useMemo(() => undoStack.length, [undoStack])
 
-  const hasWin = useMemo(() => Object.entries(boxes).findIndex(([, box]) => !box.inButton) === -1, [boxes])
-
   return {
     board,
     boxes,
     meta,
     player,
     movements,
-    hasWin,
+    gameCompleted,
     movePlayer,
     undo,
-    reset
+    reset,
   }
 }
 

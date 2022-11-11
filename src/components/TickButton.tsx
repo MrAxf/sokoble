@@ -62,14 +62,16 @@ export default function TickButton({
       actionInterval.current = undefined
     }
   }
+
+  const ifNotDisabled = cb => disabled ? () => {} : cb
   return (
     <button
       className={`grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition text-white disabled:opacity-50 ${className}`}
-      onMouseDown={enableMouseTick}
-      onTouchStart={enableTouchTick}
-      onMouseLeave={disableTick}
-      onMouseUp={disableTick}
-      onTouchEnd={disableTick}
+      onMouseDown={ifNotDisabled(enableMouseTick)}
+      onTouchStart={ifNotDisabled(enableTouchTick)}
+      onMouseLeave={ifNotDisabled(disableTick)}
+      onMouseUp={ifNotDisabled(disableTick)}
+      onTouchEnd={ifNotDisabled(disableTick)}
       disabled={disabled}
     >
       {children}

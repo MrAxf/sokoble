@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from 'react'
+import { useCallback } from 'react'
 
 import useSokoban from '../uses/useSokoban'
 import tailwindData from '../utils/tailwindData'
@@ -26,7 +26,7 @@ export default function SokobanGrid() {
         />
       ),
       BUTTON: (
-        <Fragment key={`${x}-${y}`}>
+        <g key={`${x}-${y}`}>
           <rect
             x={x + meta.walls.left}
             y={y + meta.walls.top}
@@ -44,7 +44,7 @@ export default function SokobanGrid() {
             r="0.25"
             style={{ fill: 'white' }}
           />
-        </Fragment>
+        </g>
       ),
     }[cell])
 

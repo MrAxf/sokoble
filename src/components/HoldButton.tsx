@@ -57,14 +57,16 @@ export default function HoldButton({
     })
   }
 
+  const ifNotDisabled = cb => disabled ? () => {} : cb
+
   return (
     <button
       className={`relative overflow-hidden grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition disabled:opacity-50 text-white ${className}`}
-      onMouseDown={onMouseHold}
-      onTouchStart={onTouchHold}
-      onMouseUp={cancelHold}
-      onMouseLeave={cancelHold}
-      onTouchEnd={cancelHold}
+      onMouseDown={ifNotDisabled(onMouseHold)}
+      onTouchStart={ifNotDisabled(onTouchHold)}
+      onMouseUp={ifNotDisabled(cancelHold)}
+      onMouseLeave={ifNotDisabled(cancelHold)}
+      onTouchEnd={ifNotDisabled(cancelHold)}
       disabled={disabled}
     >
       <motion.span
