@@ -7,7 +7,7 @@ const mainFont = Open_Sans({
   subsets: ['latin'],
 })
 
-type PageLayoutProps = {
+interface PageLayoutProps {
   children: ReactNode
 }
 

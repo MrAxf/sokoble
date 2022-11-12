@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
-type PageLayoutProps = {
+interface PageLayoutProps {
   children: ReactNode
 }
 
