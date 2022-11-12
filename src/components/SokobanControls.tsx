@@ -19,45 +19,45 @@ export default function SokobanControls() {
   }
 
   return (
-    <div className="flex-grow grid max-h-[250px] grid-cols-3 grid-rows-2 gap-2 p-2 pb-14">
+    <div className="grid max-h-[250px] flex-grow grid-cols-3 grid-rows-2 gap-2 p-2 pb-14">
       <TickButton
         onTick={undo}
-        className="row-start-1 col-start-1"
+        className="col-start-1 row-start-1"
         disabled={gameCompleted}
       >
         <MdUndo />
       </TickButton>
       <TickButton
         onTick={onButtonTick('up')}
-        className="row-start-1 col-start-2"
+        className="col-start-2 row-start-1"
         disabled={gameCompleted}
       >
         <MdKeyboardArrowUp />
       </TickButton>
       <HoldButton
         onHoldEnded={reset}
-        className="row-start-1 col-start-3"
+        className="col-start-3 row-start-1"
         disabled={gameCompleted}
       >
         <MdReplay />
       </HoldButton>
       <TickButton
         onTick={onButtonTick('left')}
-        className="row-start-2 col-start-1"
+        className="col-start-1 row-start-2"
         disabled={gameCompleted}
       >
         <MdKeyboardArrowLeft />
       </TickButton>
       <TickButton
         onTick={onButtonTick('down')}
-        className="row-start-2 col-start-2"
+        className="col-start-2 row-start-2"
         disabled={gameCompleted}
       >
         <MdKeyboardArrowDown />
       </TickButton>
       <TickButton
         onTick={onButtonTick('right')}
-        className="row-start-2 col-start-3"
+        className="col-start-3 row-start-2"
         disabled={gameCompleted}
       >
         <MdKeyboardArrowRight />

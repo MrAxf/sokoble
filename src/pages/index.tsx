@@ -25,7 +25,7 @@ export default function Index() {
         ) : (
           <motion.div
             key="laoding"
-            className="grid place-content-center h-full"
+            className="grid h-full place-content-center"
             {...loaderTransition}
           >
             <Loader />

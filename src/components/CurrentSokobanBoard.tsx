@@ -12,6 +12,7 @@ export default function CurrentSokobanBoard() {
       const board = await getLevel()
       setCurrentBoard(board)
     })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return null

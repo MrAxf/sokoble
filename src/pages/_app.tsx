@@ -9,10 +9,9 @@ import PageLayout from '../layouts/PageLayout'
 import '../styles/index.css'
 
 export default function App({ Component, pageProps }: AppProps) {
-
   return (
     <RecoilRoot>
-      <ThemeProvider enableSystem={true} attribute='class'>
+      <ThemeProvider enableSystem={true} attribute="class">
         <Head>
           <meta charSet="UTF-8" />
           <link rel="icon" type="image/svg+xml" href="/sokoble.svg" />

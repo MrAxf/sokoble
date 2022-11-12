@@ -38,7 +38,7 @@ export default function SokobanContainer({ children }: SokobanContainerProps) {
   return (
     <div
       tabIndex={0}
-      className="h-full flex flex-col focus-visible:outline-0"
+      className="flex h-full flex-col focus-visible:outline-0"
       ref={container}
       onKeyDown={onContainerKeyDown}
     >

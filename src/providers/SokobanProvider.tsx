@@ -118,6 +118,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
     return () => {
       setReady(false)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [board])
 
   useEffect(() => {
@@ -125,6 +126,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
     if (gameCompleted) {
       setGamesCompleted((prev) => prev + 1)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameCompleted])
 
   return (

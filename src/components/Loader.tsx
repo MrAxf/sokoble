@@ -22,23 +22,24 @@ export default function Loader() {
         duration: 5,
       },
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
-      <div className="w-full min-w-[200px] aspect-square bg-primary-light rounded-xl border-8 border-primary-main relative overflow-hidden">
+      <div className="relative aspect-square w-full min-w-[200px] overflow-hidden rounded-xl border-8 border-primary-main bg-primary-light">
         <motion.div
           animate={playerControls}
-          className="w-1/2 aspect-square rounded-full bg-player absolute"
+          className="absolute aspect-square w-1/2 rounded-full bg-player"
         ></motion.div>
         <motion.div
           animate={boxControls}
-          className="w-1/2 aspect-square rounded-md bg-box-primary absolute"
+          className="absolute aspect-square w-1/2 rounded-md bg-box-primary"
         >
-          <div className="w-1/2 transition rounded-sm bg-box-secondary aspect-square m-[25%]"></div>
+          <div className="m-[25%] aspect-square w-1/2 rounded-sm bg-box-secondary transition"></div>
         </motion.div>
       </div>
-      <span className='text-center mt-3 text-lg'>Cargando...</span>
+      <span className="mt-3 text-center text-lg">Cargando...</span>
     </>
   )
 }

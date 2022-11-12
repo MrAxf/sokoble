@@ -14,9 +14,9 @@ export default function TickButton({
   children,
   onTick,
   interval = 100,
-  className = "",
+  className = '',
   tickTimeout = 500,
-  disabled = false
+  disabled = false,
 }: TickButtonProps) {
   const actionInterval = useRef<number | undefined>()
   const startTimeout = useRef<number | undefined>()
@@ -27,7 +27,7 @@ export default function TickButton({
   }, [onTick])
 
   const enableMouseTick = (evt: MouseEvent<HTMLButtonElement>) => {
-    if(isTouchAviable()) return
+    if (isTouchAviable()) return
     evt.preventDefault()
     if (evt.button === 0 && actionInterval.current == undefined) {
       startTick()
@@ -35,7 +35,7 @@ export default function TickButton({
   }
 
   const enableTouchTick = (evt: TouchEvent<HTMLButtonElement>) => {
-    if(!isTouchAviable()) return
+    if (!isTouchAviable()) return
     if (actionInterval.current == undefined) {
       startTick()
     }
@@ -43,13 +43,15 @@ export default function TickButton({
 
   const startTick = () => {
     tick.current()
-      startTimeout.current = Number(setTimeout(() => {
+    startTimeout.current = Number(
+      setTimeout(() => {
         actionInterval.current = Number(
           setInterval(() => {
             tick.current()
           }, interval)
         )
-      }, tickTimeout))
+      }, tickTimeout)
+    )
   }
 
   const disableTick = () => {
@@ -63,10 +65,10 @@ export default function TickButton({
     }
   }
 
-  const ifNotDisabled = cb => disabled ? () => {} : cb
+  const ifNotDisabled = (cb) => (disabled ? () => {} : cb)
   return (
     <button
-      className={`grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition text-white disabled:opacity-50 ${className}`}
+      className={`grid place-content-center rounded-md bg-secondary-main text-xl text-white transition hover:bg-secondary-dark disabled:opacity-50 ${className}`}
       onMouseDown={ifNotDisabled(enableMouseTick)}
       onTouchStart={ifNotDisabled(enableTouchTick)}
       onMouseLeave={ifNotDisabled(disableTick)}

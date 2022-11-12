@@ -1,5 +1,5 @@
 import { motion, useAnimationControls } from 'framer-motion'
-import { MouseEvent, ReactNode, TouchEvent, useEffect } from 'react'
+import { MouseEvent, ReactNode, TouchEvent } from 'react'
 
 import isTouchAviable from '../utils/isTouchAviable'
 
@@ -57,11 +57,11 @@ export default function HoldButton({
     })
   }
 
-  const ifNotDisabled = cb => disabled ? () => {} : cb
+  const ifNotDisabled = (cb) => (disabled ? () => {} : cb)
 
   return (
     <button
-      className={`relative overflow-hidden grid rounded-md text-xl place-content-center bg-secondary-main hover:bg-secondary-dark transition disabled:opacity-50 text-white ${className}`}
+      className={`relative grid place-content-center overflow-hidden rounded-md bg-secondary-main text-xl text-white transition hover:bg-secondary-dark disabled:opacity-50 ${className}`}
       onMouseDown={ifNotDisabled(onMouseHold)}
       onTouchStart={ifNotDisabled(onTouchHold)}
       onMouseUp={ifNotDisabled(cancelHold)}
