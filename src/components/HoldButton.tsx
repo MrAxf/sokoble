@@ -1,5 +1,5 @@
 import { motion, useAnimationControls } from 'framer-motion'
-import { MouseEvent, ReactNode, TouchEvent } from 'react'
+import { MouseEvent, ReactNode, TouchEvent, useEffect } from 'react'
 
 import isTouchAviable from '../utils/isTouchAviable'
 
@@ -19,6 +19,10 @@ export default function HoldButton({
   disabled = false,
 }: HoldButtonProps) {
   const controls = useAnimationControls()
+
+  useEffect(() => {
+    if(disabled) cancelHold();
+  }, [disabled])
 
   const onMouseHold = (evt: MouseEvent<HTMLButtonElement>) => {
     if (isTouchAviable()) return

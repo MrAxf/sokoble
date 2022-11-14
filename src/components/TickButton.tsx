@@ -26,6 +26,10 @@ export default function TickButton({
     tick.current = onTick
   }, [onTick])
 
+  useEffect(() => {
+    if(disabled) disableTick();
+  }, [disabled])
+
   const enableMouseTick = (evt: MouseEvent<HTMLButtonElement>) => {
     if (isTouchAviable()) return
     evt.preventDefault()
