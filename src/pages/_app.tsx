@@ -1,13 +1,12 @@
+import { ThemeProvider } from 'next-themes'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { RecoilRoot } from 'recoil'
-import CurrentSokobanBoard from '../components/CurrentSokobanBoard'
-import { ThemeProvider } from 'next-themes'
 
+import CurrentSokobanBoard from '../components/CurrentSokobanBoard'
 import MainLayout from '../layouts/MainLayout'
 import PageLayout from '../layouts/PageLayout'
 import '../styles/index.css'
-import tailwindData from '../utils/tailwindData'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
