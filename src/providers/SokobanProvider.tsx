@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useEffect, useMemo, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { useRecoilState } from 'recoil'
 
 import {
@@ -77,6 +84,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
       boxesArr.findIndex(([, box]) => !box.inButton) === -1
     )
   }, [boxes])
+  const prevGameCompleted = useRef(gameCompleted)
 
   useEffect(() => {
     const size = Math.max(board.board.length, board.board[0]?.length)
@@ -118,15 +126,16 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
     return () => {
       setReady(false)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [board])
 
   useEffect(() => {
     console.log(gameCompleted)
-    if (gameCompleted) {
+    if (gameCompleted && prevGameCompleted.current !== gameCompleted) {
       setGamesCompleted((prev) => prev + 1)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    prevGameCompleted.current = gameCompleted
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameCompleted])
 
   return (

@@ -1,12 +1,17 @@
 import { ThemeProvider } from 'next-themes'
 import { AppProps } from 'next/app'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { RecoilRoot } from 'recoil'
 
-import CurrentSokobanBoard from '../components/CurrentSokobanBoard'
 import MainLayout from '../layouts/MainLayout'
 import PageLayout from '../layouts/PageLayout'
 import '../styles/index.css'
+
+const CurrentSokobanBoard = dynamic(
+  () => import('../components/CurrentSokobanBoard'),
+  { ssr: false }
+)
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

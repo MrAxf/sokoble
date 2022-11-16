@@ -23,7 +23,7 @@ export const gamesCompleted = selector({
   key: 'gamesCompleted',
   get: ({ get }) => get(_gamesCompleted),
   set: ({ set }, newValue: number) => {
-    set(_gamesPlayed, newValue)
+    set(_gamesCompleted, newValue)
     globalThis.localStorage.setItem('gamesCompleted', `${newValue}`)
   },
 })

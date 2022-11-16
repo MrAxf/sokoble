@@ -1,7 +1,8 @@
-import { useRecoilValue } from 'recoil'
-import { gamesCompleted, gamesPlayed } from '../store/gameStats'
 import { motion, useAnimation } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
+import { useRecoilValue } from 'recoil'
+
+import { gamesCompleted, gamesPlayed } from '../store/gameStats'
 
 export default function StatsPanel() {
   const currentGamesPlayed = useRecoilValue(gamesPlayed)
@@ -9,10 +10,15 @@ export default function StatsPanel() {
 
   const animation = useAnimation()
 
+  const ratio = useMemo(
+    () => Math.round((currentGamesCompleted / currentGamesPlayed) * 10000) / 100 || 0,
+    [currentGamesCompleted, currentGamesPlayed]
+  )
+
   useEffect(() => {
     animation.start({
       width: `${Math.min(
-        (currentGamesCompleted / currentGamesPlayed) * 100,
+        ratio,
         100
       )}%`,
       transition: {
@@ -21,7 +27,7 @@ export default function StatsPanel() {
       },
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [ratio])
 
   return (
     <>
@@ -35,7 +41,7 @@ export default function StatsPanel() {
           animate={animation}
         ></motion.div>
         <span className="relative">
-          {(currentGamesCompleted / currentGamesPlayed) * 100}%
+          {ratio}%
         </span>
       </motion.div>
     </>
