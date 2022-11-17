@@ -1,5 +1,5 @@
 import { motion, useAnimationControls } from 'framer-motion'
-import { MouseEvent, ReactNode, TouchEvent, useEffect } from 'react'
+import { MouseEvent, ReactNode, TouchEvent, useEffect, useMemo } from 'react'
 
 import isTouchAviable from '../utils/isTouchAviable'
 
@@ -9,6 +9,7 @@ interface HoldButtonProps {
   children: ReactNode
   className?: string
   disabled?: boolean
+  theme?: 'secondary' | 'danger'
 }
 
 export default function HoldButton({
@@ -17,12 +18,29 @@ export default function HoldButton({
   children,
   className = '',
   disabled = false,
+  theme = 'secondary',
 }: HoldButtonProps) {
   const controls = useAnimationControls()
 
   useEffect(() => {
-    if(disabled) cancelHold();
+    if (disabled) cancelHold()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [disabled])
+
+  const colors = useMemo(() => {
+    return {
+      secondary: {
+        dark: "hover:bg-secondary-dark",
+        main: "bg-secondary-main",
+        light: "bg-secondary-light",
+      },
+      danger: {
+        dark: "hover:bg-danger-dark",
+        main: "bg-danger-main",
+        light: "bg-danger-light",
+      }
+    }[theme]
+  }, [theme])
 
   const onMouseHold = (evt: MouseEvent<HTMLButtonElement>) => {
     if (isTouchAviable()) return
@@ -65,7 +83,7 @@ export default function HoldButton({
 
   return (
     <button
-      className={`relative grid place-content-center overflow-hidden rounded-md bg-secondary-main text-xl text-white transition hover:bg-secondary-dark disabled:opacity-50 ${className}`}
+      className={`relative grid place-content-center overflow-hidden rounded-md  text-xl text-white transition disabled:opacity-50 ${className} ${colors.main} ${colors.dark}`}
       onMouseDown={ifNotDisabled(onMouseHold)}
       onTouchStart={ifNotDisabled(onTouchHold)}
       onMouseUp={ifNotDisabled(cancelHold)}
@@ -74,7 +92,7 @@ export default function HoldButton({
       disabled={disabled}
     >
       <motion.span
-        className="absolute h-full bg-secondary-light"
+        className={`absolute h-full ${colors.light}`}
         initial={{ width: '0%' }}
         animate={controls}
       ></motion.span>

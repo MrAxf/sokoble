@@ -1,5 +1,12 @@
-import Switch from '../components/Switch'
 import { useTheme } from 'next-themes'
+import dynamic from 'next/dynamic'
+
+import Switch from '../components/Switch'
+
+const DeleteDataButton = dynamic(
+  () => import('../components/DeleteDataButton'),
+  { ssr: false }
+)
 
 export default function Config() {
   const { theme, setTheme } = useTheme()
@@ -9,12 +16,15 @@ export default function Config() {
   }
 
   return (
-    <div className="text-xl">
-      <Switch
-        label="Modo oscuro"
-        checked={theme === 'dark'}
-        onChange={onThemeChange}
-      ></Switch>
+    <div className="flex flex-col">
+      <div className="text-xl py-3">
+        <Switch
+          label="Modo oscuro"
+          checked={theme === 'dark'}
+          onChange={onThemeChange}
+        ></Switch>
+      </div>
+      <DeleteDataButton />
     </div>
   )
 }

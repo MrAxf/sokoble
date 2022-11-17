@@ -10,6 +10,11 @@ module.exports = {
           main: '#673AB7',
           light: '#D1C4E9'
         },
+        danger: {
+          dark: '#D32F2F',
+          main: '#F44336',
+          light: '#FFCDD2'
+        },
         box: {
           primary: '#5D4037',
           secondary: '#795548',
