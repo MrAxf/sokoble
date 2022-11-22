@@ -30,7 +30,7 @@ export default function DeleteDataButton() {
 
   return (
     <HoldButton
-      className="p-3 my-3 flex flex-row"
+      className="p-3 my-6 flex flex-row"
       onHoldEnded={onHoldEnded}
       holdTime={5000}
       theme="danger"

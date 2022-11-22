@@ -17,7 +17,7 @@ export default function Config() {
 
   return (
     <div className="flex flex-col">
-      <div className="text-xl py-3">
+      <div className="text-xl mb-6">
         <Switch
           label="Modo oscuro"
           checked={theme === 'dark'}

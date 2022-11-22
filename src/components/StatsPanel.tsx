@@ -31,11 +31,11 @@ export default function StatsPanel() {
 
   return (
     <>
-      <span className="my-3 font-bold">Juegos jugados:</span>
+      <span className="mt-6 mb-3 font-bold">Juegos jugados:</span>
       <span>{currentGamesPlayed}</span>
-      <span className="mt-5 mb-3 font-bold">Juegos completados:</span>
+      <span className="mt-6 mb-3 font-bold">Juegos completados:</span>
       <span>{currentGamesCompleted}</span>
-      <motion.div className="relative my-5 w-full overflow-hidden rounded-xl bg-primary-main py-3 text-center font-bold text-white after:content-['']">
+      <motion.div className="relative my-6 w-full overflow-hidden rounded-xl bg-primary-main py-3 text-center font-bold text-white after:content-['']">
         <motion.div
           className="absolute top-0 left-0 h-full bg-box-success-primary"
           animate={animation}
