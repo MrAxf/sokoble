@@ -1,5 +1,7 @@
 import { motion, useAnimation } from 'framer-motion'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   MdKeyboardArrowDown,
   MdKeyboardArrowLeft,
@@ -11,8 +13,17 @@ import {
 
 import tailwindData from '../utils/tailwindData'
 
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'help'])),
+    },
+  }
+}
+
 export default function Help() {
   const moveAniimation = useAnimation()
+  const { t } = useTranslation("help")
 
   useEffect(() => {
     moveAniimation.start({
@@ -23,12 +34,13 @@ export default function Help() {
         duration: 3,
       },
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row justify-between content-center my-4">
-        <p>Esto es el jugador.</p>
+        <p>{t("this is the player")}.</p>
         <svg
           width={1}
           height={1}
@@ -44,7 +56,7 @@ export default function Help() {
         </svg>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>Esto una caja.</p>
+        <p>{t("this is a box")}.</p>
         <svg
           width={1}
           height={1}
@@ -74,7 +86,7 @@ export default function Help() {
         </svg>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>Mueve al jugador usando los botones de dirección.</p>
+        <p>{t("move the player using the arrow buttons")}.</p>
         <span className="ml-3">
           <MdKeyboardArrowUp className="inline-block w-[30px] h-[30px]" />
           <MdKeyboardArrowLeft className="inline-block w-[30px] h-[30px]" />
@@ -83,7 +95,7 @@ export default function Help() {
         </span>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>Empuja todas las cajas hacia los botones para ganar.</p>
+        <p>{t("push the boxes towards the buttons to win")}.</p>
         <svg
           width={1}
           height={1}
@@ -128,19 +140,19 @@ export default function Help() {
         </svg>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>Puedes deshacer tus movimientos pulsando &quot;deshacer&quot;.</p>
+        <p>{t("you can undo your actions pressing the \"undo\" button")}.</p>
         <span className="ml-3">
           <MdUndo className="inline-block w-[30px] h-[30px]" />
         </span>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>Puedes reiniciar la partida pulsando &quot;reinmiciar&quot;.</p>
+        <p>{t("you can restart the game holding down the \"restart\" button")}.</p>
         <span className="ml-3">
           <MdReplay className="inline-block w-[30px] h-[30px]" />
         </span>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>Vuelve cada día para jugar un nivel nuevo.</p>
+        <p>{t("come back every day to play a new level")}.</p>
       </div>
     </div>
   )

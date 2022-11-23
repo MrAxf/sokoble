@@ -1,3 +1,4 @@
+import { appWithTranslation } from 'next-i18next'
 import { ThemeProvider } from 'next-themes'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
@@ -13,7 +14,7 @@ const CurrentSokobanBoard = dynamic(
   { ssr: false }
 )
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ThemeProvider enableSystem={true} attribute="class">
@@ -38,3 +39,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </RecoilRoot>
   )
 }
+
+export default appWithTranslation(App)

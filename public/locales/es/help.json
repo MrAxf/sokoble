@@ -1,0 +1,9 @@
+{
+  "this is the player": "Esto es el jugador",
+  "this is a box": "Esto es una caja",
+  "move the player using the arrow buttons": "Mueve al jugador usando los botones de dirección",
+  "push the boxes towards the buttons to win": "Empuja todas las cajas hacia los botones para ganar",
+  "you can undo your actions pressing the \"undo\" button": "Puedes deshacer tus movimientos pulsando \"deshacer\"",
+  "you can restart the game holding down the \"restart\" button": "Puedes reiniciar la partida manteniendo pulsado el botón \"reiniciar\"",
+  "come back every day to play a new level": "Vuelve cada día para jugar un nivel nuevo"
+}

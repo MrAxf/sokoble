@@ -1,4 +1,5 @@
-import nextPWAConfig from 'next-pwa'
+const nextPWAConfig = require('next-pwa')
+const { i18n } = require('./next-i18next.config')
 
 const withPWA = nextPWAConfig({
   dest: 'public',
@@ -9,8 +10,9 @@ const withPWA = nextPWAConfig({
 /**
  * @type {import('next').NextConfig}
  */
-const nextConfig = withPWA({
-  reactStrictMode: false
-})
+const nextConfig = {
+  reactStrictMode: false,
+  i18n
+}
 
-export default nextConfig
+module.exports = withPWA(nextConfig)

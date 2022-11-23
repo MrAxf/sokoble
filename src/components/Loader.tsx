@@ -1,10 +1,12 @@
 import { motion, useAnimation } from 'framer-motion'
 import { useEffect } from 'react'
+import { useTranslation } from 'next-i18next'
 
 import tailwindData from '../utils/tailwindData'
 
 export default function Loader() {
   const waveControls = useAnimation()
+  const { t } = useTranslation()
 
   useEffect(() => {
     waveControls.start({
@@ -146,7 +148,7 @@ export default function Loader() {
           ></rect>
         </motion.g>
       </svg>
-      <span className="mt-3 text-center text-lg">Cargando...</span>
+      <span className="mt-3 text-center text-lg">{t("loading")}</span>
     </div>
   )
 }

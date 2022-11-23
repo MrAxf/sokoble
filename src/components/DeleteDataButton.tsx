@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { MdDelete } from 'react-icons/md'
 import { useRecoilState } from 'recoil'
 
@@ -19,6 +20,8 @@ export default function DeleteDataButton() {
   const [, setGamesPlayed] = useRecoilState(gamesPlayed)
   const [, setGamesCompleted] = useRecoilState(gamesCompleted)
 
+  const { t } = useTranslation('config')
+
   const onHoldEnded = () => {
     setGameName('')
     setGamePlayer({ x: 0, y: 0 })
@@ -35,7 +38,8 @@ export default function DeleteDataButton() {
       holdTime={5000}
       theme="danger"
     >
-      <MdDelete className="inline-block w-[1.5em] h-[1.5em]" /> Eliminar datos
+      <MdDelete className="inline-block w-[1.5em] h-[1.5em]" />
+      {` ${t('delete data')}`}
     </HoldButton>
   )
 }
