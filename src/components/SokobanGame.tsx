@@ -26,8 +26,10 @@ export default function SokobanGame() {
           <SokobanProvider board={board}>
             <SokobanContainer>
               <SokobanGrid />
-              <SokobanStats></SokobanStats>
-              <SokobanControls />
+              <div className="flex flex-grow flex-col justify-between">
+                <SokobanStats />
+                <SokobanControls />
+              </div>
             </SokobanContainer>
           </SokobanProvider>
         </motion.div>

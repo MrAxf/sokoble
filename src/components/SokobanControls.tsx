@@ -7,13 +7,28 @@ import {
   MdReplay,
   MdUndo,
 } from 'react-icons/md'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from 'react-share'
 
 import useSokoban from '../uses/useSokoban'
 import HoldButton from './HoldButton'
 import TickButton from './TickButton'
 
+const shareButtonprops = {
+  url: 'https://sokoble.axford.dev',
+  resetButtonStyle: false,
+  className:
+    'grid place-content-center rounded-md bg-secondary-main text-xl text-white transition hover:bg-secondary-dark disabled:opacity-50',
+}
+
 export default function SokobanControls() {
-  const { movePlayer, undo, reset, gameCompleted } = useSokoban()
+  const { movePlayer, undo, reset, movements, gameCompleted } = useSokoban()
   const { t } = useTranslation('index')
 
   const onButtonTick = (direction: Direction) => () => {
@@ -23,9 +38,35 @@ export default function SokobanControls() {
   return (
     <div className="grid max-h-[250px] flex-grow grid-cols-3 grid-rows-2 gap-2 p-2 pb-14">
       {gameCompleted ? (
-        <span className="my-2 col-span-3 text-3xl font-bold text-center grid place-items-center">
-          {gameCompleted && t('level completed')}
-        </span>
+        <>
+          <span className="my-2 col-span-3 text-3xl font-bold text-center grid place-items-center">
+            {gameCompleted && t('level completed')}
+          </span>
+          <TwitterShareButton
+            {...shareButtonprops}
+            title={`${t('share message 1')} ${movements} ${t(
+              'share message 2'
+            )}.`}
+          >
+            <TwitterIcon bgStyle={{ fill: 'transparent' }} />
+          </TwitterShareButton>
+          <FacebookShareButton
+            {...shareButtonprops}
+            quote={`${t('share message 1')} ${movements} ${t(
+              'share message 2'
+            )}.`}
+          >
+            <FacebookIcon bgStyle={{ fill: 'transparent' }} />
+          </FacebookShareButton>
+          <WhatsappShareButton
+            {...shareButtonprops}
+            title={`${t('share message 1')} ${movements} ${t(
+              'share message 2'
+            )}.`}
+          >
+            <WhatsappIcon bgStyle={{ fill: 'transparent' }} />
+          </WhatsappShareButton>
+        </>
       ) : (
         <>
           <TickButton
