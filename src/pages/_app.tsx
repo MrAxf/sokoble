@@ -1,4 +1,4 @@
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation, useTranslation } from 'next-i18next'
 import { ThemeProvider } from 'next-themes'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
@@ -15,6 +15,7 @@ const CurrentSokobanBoard = dynamic(
 )
 
 function App({ Component, pageProps }: AppProps) {
+  const { t } = useTranslation()
   return (
     <RecoilRoot>
       <ThemeProvider enableSystem={true} attribute="class">
@@ -27,6 +28,7 @@ function App({ Component, pageProps }: AppProps) {
               content="width=device-width, initial-scale=1.0"
             />
             <title>Sokoble</title>
+            <meta name="description" content={t("description")} />
           </Head>
           <CurrentSokobanBoard />
           <MainLayout>

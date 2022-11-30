@@ -3,5 +3,6 @@
   "help": "Help",
   "stats": "Stats",
   "loading": "Loading...",
-  "play": "Play"
+  "play": "Play",
+  "description": "Play the classic Sokoban game but with a twist!! Inspired by games like Wordle, Sokoble challenge you to play a new Sokoban level daily."
 }

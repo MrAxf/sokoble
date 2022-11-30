@@ -1,14 +1,17 @@
-import type { NextRequest } from 'next/server'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 import supabase from '../../supabase'
 
 const baseDate = new Date('2022-01-01')
 
-export const config = {
-  runtime: 'experimental-edge',
-}
+// export const config = {
+//   runtime: 'experimental-edge',
+// }
 
-export default async function handler(req: NextRequest) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<SokobanBoard>
+) {
   const { count } = await supabase
     .from('levels')
     .select('*', { count: 'exact', head: true })
@@ -27,11 +30,10 @@ export default async function handler(req: NextRequest) {
     .range(levelNo + 1, levelNo + 1)
     .single()
 
-  return new Response(JSON.stringify(data.level), {
-    status: 200,
-    headers: {
-      'content-type': 'application/json',
-      'cache-control': 'public, s-maxage=86400, stale-while-revalidate=600',
-    },
-  })
+  res.setHeader(
+    'cache-control',
+    'public, s-maxage=86400, stale-while-revalidate=600'
+  )
+
+  res.status(200).json(data.level as SokobanBoard)
 }
