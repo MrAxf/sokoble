@@ -1,5 +1,5 @@
 import ConfettiGenerator from 'confetti-js'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import createEventEmitter from '../utils/createEventEmitter'
 import hexToRgb from '../utils/hexToRgb'
@@ -42,22 +42,24 @@ export default function Confetti() {
   const rendering = useRef<ConfettiGenerator>(false)
 
   useEffect(() => {
-    const confettiSettings = { target: canvasRef.current, ...confettiOptions }
-    confettiGenerator.current = new ConfettiGenerator(confettiSettings)
     const subcription = confettiSubscriber$.subscribe((val) => {
-      if (!confettiGenerator.current || val === rendering.current) return
+      if (val === rendering.current) return
       if (val) {
+        confettiGenerator.current = new ConfettiGenerator({
+          target: canvasRef.current,
+          ...confettiOptions,
+        })
         confettiGenerator.current.render()
-        console.log("render")
+        console.log('render')
       } else {
-        confettiGenerator.current.clear()
+        confettiGenerator.current?.clear()
       }
       rendering.current = val
     })
 
     return () => {
       subcription.unsubscribe()
-      if (confettiGenerator.current) confettiGenerator.current.clear()
+      confettiGenerator.current?.clear()
     }
   }, [])
 
