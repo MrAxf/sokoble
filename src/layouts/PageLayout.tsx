@@ -22,7 +22,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
       <motion.div
         key={asPath}
         {...pageAnimation}
-        className="mx-auto h-full w-full max-w-[500px] p-7"
+        className="mx-auto h-full w-full max-w-[500px] p-7 z-2"
       >
         {children}
       </motion.div>

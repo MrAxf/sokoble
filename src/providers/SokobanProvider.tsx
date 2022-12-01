@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react'
 import { useRecoilState } from 'recoil'
+import { setConfettiEnabled } from '../components/Confetti'
 
 import {
   currentGameBoxes,
@@ -130,7 +131,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
   }, [board])
 
   useEffect(() => {
-    console.log(gameCompleted)
+    setConfettiEnabled(gameCompleted)
     if (gameCompleted && prevGameCompleted.current !== gameCompleted) {
       setGamesCompleted((prev) => prev + 1)
     }

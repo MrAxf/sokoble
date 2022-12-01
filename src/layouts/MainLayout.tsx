@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import Navbar from '../components/Navbar'
 import { Open_Sans } from '@next/font/google'
+import Confetti from '../components/Confetti'
 
 const mainFont = Open_Sans({
   weight: 'variable',
@@ -14,6 +15,7 @@ interface PageLayoutProps {
 export default function MainLayout({ children }: PageLayoutProps) {
   return (
     <div className={`flex h-screen flex-col ${mainFont.className}`}>
+      <Confetti />
       <header className="flex flex-none flex-row justify-center bg-slate-200 py-2 dark:bg-slate-900">
         <Navbar></Navbar>
       </header>
