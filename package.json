@@ -13,6 +13,7 @@
   "dependencies": {
     "@next/font": "^13.0.5",
     "@supabase/supabase-js": "^2.1.1",
+    "confetti-js": "^0.0.18",
     "framer-motion": "^7.6.12",
     "i18next": "^22.0.6",
     "next": "^13.0.5",
@@ -24,7 +25,8 @@
     "react-i18next": "^12.0.0",
     "react-icons": "^4.6.0",
     "react-share": "^4.4.1",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "rxjs": "^7.5.7"
   },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
