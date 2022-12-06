@@ -30,15 +30,15 @@ export default function HoldButton({
   const colors = useMemo(() => {
     return {
       secondary: {
-        dark: "hover:bg-secondary-dark",
-        main: "bg-secondary-main",
-        light: "bg-secondary-light",
+        dark: 'hover:bg-secondary-dark',
+        main: 'bg-secondary-main',
+        light: 'bg-secondary-light',
       },
       danger: {
-        dark: "hover:bg-danger-dark",
-        main: "bg-danger-main",
-        light: "bg-danger-light",
-      }
+        dark: 'hover:bg-danger-dark',
+        main: 'bg-danger-main',
+        light: 'bg-danger-light',
+      },
     }[theme]
   }, [theme])
 
@@ -83,7 +83,7 @@ export default function HoldButton({
 
   return (
     <button
-      className={`relative grid place-content-center overflow-hidden rounded-md  text-xl text-white transition disabled:opacity-50 ${className} ${colors.main} ${colors.dark}`}
+      className={`relative grid place-content-center overflow-hidden rounded-md text-xl text-white transition disabled:opacity-50 ${className} ${colors.main} ${colors.dark}`}
       onMouseDown={ifNotDisabled(onMouseHold)}
       onTouchStart={ifNotDisabled(onTouchHold)}
       onMouseUp={ifNotDisabled(cancelHold)}

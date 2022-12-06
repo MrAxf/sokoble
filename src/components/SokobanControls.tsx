@@ -47,7 +47,7 @@ function ShareButtons({ movements }: { movements: number }) {
         scale: 0.9,
       }}
       transition={{
-        duration: 1,
+        duration: 2,
       }}
     >
       <span className="col-span-3 text-3xl font-bold text-center grid place-items-center">
@@ -104,7 +104,7 @@ function PlayButtons({
         scale: 0.9,
       }}
       transition={{
-        duration: 1,
+        duration: 2,
       }}
     >
       <TickButton

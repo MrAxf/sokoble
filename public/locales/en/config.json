@@ -1,4 +1,7 @@
 {
-  "dark mode": "Dark mode",
+  "theme": "Theme",
+  "system": "System",
+  "light": "Light",
+  "dark": "Dark",
   "delete data": "Delete data"
 }
