@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   MdKeyboardArrowDown,
@@ -25,14 +26,14 @@ const shareButtonprops = {
   url: 'https://sokoble.axford.dev',
   resetButtonStyle: false,
   className:
-    'grid place-content-center rounded-md bg-secondary-main text-xl text-white transition hover:bg-secondary-dark disabled:opacity-50',
+    'grid place-content-center rounded-md bg-secondary-main text-xl text-white transition hover:bg-secondary-dark disabled:opacity-50 disabled:cursor-not-allowed',
 }
 
 function ShareButtons({ movements }: { movements: number }) {
   const { t } = useTranslation('index')
+  const [disabled, setDisabled] = useState(true)
   return (
     <motion.div
-      key="ShareButtons"
       className="grid max-h-[250px] flex-grow grid-cols-3 grid-rows-2 gap-2 p-2 pb-14"
       initial={{
         opacity: 0,
@@ -47,8 +48,9 @@ function ShareButtons({ movements }: { movements: number }) {
         scale: 0.9,
       }}
       transition={{
-        duration: 2,
+        duration: 1,
       }}
+      onAnimationComplete={() => { setDisabled(false) }}
     >
       <span className="col-span-3 text-3xl font-bold text-center grid place-items-center">
         {t('level completed')}
@@ -56,18 +58,21 @@ function ShareButtons({ movements }: { movements: number }) {
       <TwitterShareButton
         {...shareButtonprops}
         title={`${t('share message 1')} ${movements} ${t('share message 2')}.`}
+        disabled={disabled}
       >
         <TwitterIcon bgStyle={{ fill: 'transparent' }} size={40} />
       </TwitterShareButton>
       <FacebookShareButton
         {...shareButtonprops}
         quote={`${t('share message 1')} ${movements} ${t('share message 2')}.`}
+        disabled={disabled}
       >
         <FacebookIcon bgStyle={{ fill: 'transparent' }} size={40} />
       </FacebookShareButton>
       <WhatsappShareButton
         {...shareButtonprops}
         title={`${t('share message 1')} ${movements} ${t('share message 2')}.`}
+        disabled={disabled}
       >
         <WhatsappIcon bgStyle={{ fill: 'transparent' }} size={40} />
       </WhatsappShareButton>
@@ -89,7 +94,6 @@ function PlayButtons({
   const { t } = useTranslation('index')
   return (
     <motion.div
-      key="PlayButtons"
       className="grid max-h-[250px] flex-grow grid-cols-3 grid-rows-2 gap-2 p-2 pb-14"
       initial={{
         opacity: 0,
@@ -104,7 +108,7 @@ function PlayButtons({
         scale: 0.9,
       }}
       transition={{
-        duration: 2,
+        duration: 1,
       }}
     >
       <TickButton
@@ -163,9 +167,10 @@ export default function SokobanControls() {
   return (
     <AnimatePresence initial={false} mode="wait">
       {gameCompleted ? (
-        <ShareButtons movements={movements} />
+        <ShareButtons key="ShareButtons" movements={movements} />
       ) : (
         <PlayButtons
+          key="PlayButtons"
           disabled={gameCompleted}
           undo={undo}
           reset={reset}

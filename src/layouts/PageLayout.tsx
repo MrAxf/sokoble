@@ -24,7 +24,9 @@ export default function PageLayout({ children }: PageLayoutProps) {
         {...pageAnimation}
         className="mx-auto h-full w-full max-w-[500px] p-7 z-2"
       >
-        {children}
+        <AnimatePresence initial={true} mode="sync">
+          {children}
+        </AnimatePresence>
       </motion.div>
     </AnimatePresence>
   )

@@ -1,19 +1,14 @@
-import { motion, useAnimation } from 'framer-motion'
-import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { useTranslation } from 'next-i18next'
 
 import tailwindData from '../utils/tailwindData'
 
-export default function Loader() {
-  const waveControls = useAnimation()
-  const { t } = useTranslation()
+const animation = {
+  y: [0, 1, 0],
+}
 
-  useEffect(() => {
-    waveControls.start({
-      y: [0, 1, 0],
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+export default function Loader() {
+  const { t } = useTranslation()
 
   return (
     <div className="relative w-full min-w-[200px] flex flex-col">
@@ -24,7 +19,7 @@ export default function Loader() {
         className="min-h-[100px] w-full"
       >
         <motion.g
-          animate={waveControls}
+          animate={animation}
           transition={{
             repeat: Infinity,
             duration: 1,
@@ -51,7 +46,7 @@ export default function Loader() {
           ></rect>
         </motion.g>
         <motion.g
-          animate={waveControls}
+          animate={animation}
           transition={{
             repeat: Infinity,
             duration: 1,
@@ -83,7 +78,7 @@ export default function Loader() {
           r="0.5"
           cx="2.5"
           cy="0.5"
-          animate={waveControls}
+          animate={animation}
           transition={{
             repeat: Infinity,
             duration: 1,
@@ -92,7 +87,7 @@ export default function Loader() {
           }}
         ></motion.circle>
         <motion.g
-          animate={waveControls}
+          animate={animation}
           transition={{
             repeat: Infinity,
             duration: 1,
@@ -120,7 +115,7 @@ export default function Loader() {
           ></rect>
         </motion.g>
         <motion.g
-          animate={waveControls}
+          animate={animation}
           transition={{
             repeat: Infinity,
             duration: 1,

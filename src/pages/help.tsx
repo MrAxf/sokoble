@@ -1,4 +1,4 @@
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -13,6 +13,26 @@ import {
 
 import tailwindData from '../utils/tailwindData'
 
+const moveAnimation = {
+  x: [0, 1, 1, 1],
+  opacity: [1, 1, 1, 0],
+}
+const transition = {
+  repeat: Infinity,
+  duration: 3,
+}
+
+const boxColors = {
+  outer: {
+    primary: tailwindData.theme.colors['box'].primary,
+    success: tailwindData.theme.colors['box'].success.primary,
+  },
+  inner: {
+    primary: tailwindData.theme.colors['box'].secondary,
+    success: tailwindData.theme.colors['box'].success.secondary,
+  },
+}
+
 export async function getStaticProps({ locale }) {
   return {
     props: {
@@ -22,25 +42,12 @@ export async function getStaticProps({ locale }) {
 }
 
 export default function Help() {
-  const moveAniimation = useAnimation()
-  const { t } = useTranslation("help")
-
-  useEffect(() => {
-    moveAniimation.start({
-      x: [0, 1, 1, 1],
-      opacity: [1, 1, 1, 0],
-      transition: {
-        repeat: Infinity,
-        duration: 3,
-      },
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { t } = useTranslation('help')
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row justify-between content-center my-4">
-        <p>{t("this is the player")}.</p>
+        <p>{t('this is the player')}.</p>
         <svg
           width={1}
           height={1}
@@ -56,7 +63,7 @@ export default function Help() {
         </svg>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>{t("this is a box")}.</p>
+        <p>{t('this is a box')}.</p>
         <svg
           width={1}
           height={1}
@@ -86,7 +93,7 @@ export default function Help() {
         </svg>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>{t("move the player using the arrow buttons")}.</p>
+        <p>{t('move the player using the arrow buttons')}.</p>
         <span className="ml-3">
           <MdKeyboardArrowUp className="inline-block w-[30px] h-[30px]" />
           <MdKeyboardArrowLeft className="inline-block w-[30px] h-[30px]" />
@@ -95,7 +102,7 @@ export default function Help() {
         </span>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>{t("push the boxes towards the buttons to win")}.</p>
+        <p>{t('push the boxes towards the buttons to win')}.</p>
         <svg
           width={1}
           height={1}
@@ -115,44 +122,63 @@ export default function Help() {
             r="0.5"
             cx={0.5}
             cy={0.5}
-            animate={moveAniimation}
+            animate={moveAnimation}
+            transition={transition}
           />
-          <motion.g animate={moveAniimation}>
-            <rect
+          <motion.g animate={moveAnimation} transition={transition}>
+            <motion.rect
               width="1"
               height="1"
               rx="0.3"
               ry="0.3"
               x="1"
               y="0"
-              fill={tailwindData.theme.colors['box'].primary}
+              animate={{
+                fill: [
+                  boxColors.outer.primary,
+                  boxColors.outer.primary,
+                  boxColors.outer.success,
+                  boxColors.outer.success,
+                ],
+              }}
+              transition={transition}
             />
-            <rect
+            <motion.rect
               width="0.5"
               height="0.5"
               rx="0.15"
               ry="0.15"
               x="1.25"
               y="0.25"
-              fill={tailwindData.theme.colors['box'].secondary}
+              animate={{
+                fill: [
+                  boxColors.inner.primary,
+                  boxColors.inner.primary,
+                  boxColors.inner.success,
+                  boxColors.inner.success,
+                ],
+              }}
+              transition={transition}
             />
           </motion.g>
         </svg>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>{t("you can undo your actions pressing the \"undo\" button")}.</p>
+        <p>{t('you can undo your actions pressing the "undo" button')}.</p>
         <span className="ml-3">
           <MdUndo className="inline-block w-[30px] h-[30px]" />
         </span>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>{t("you can restart the game holding down the \"restart\" button")}.</p>
+        <p>
+          {t('you can restart the game holding down the "restart" button')}.
+        </p>
         <span className="ml-3">
           <MdReplay className="inline-block w-[30px] h-[30px]" />
         </span>
       </div>
       <div className="flex flex-row justify-between content-center my-4">
-        <p>{t("come back every day to play a new level")}.</p>
+        <p>{t('come back every day to play a new level')}.</p>
       </div>
     </div>
   )
