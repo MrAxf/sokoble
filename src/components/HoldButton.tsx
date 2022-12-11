@@ -2,6 +2,7 @@ import { motion, useAnimationControls } from 'framer-motion'
 import { MouseEvent, ReactNode, TouchEvent, useEffect, useMemo } from 'react'
 
 import isTouchAviable from '../utils/isTouchAviable'
+import Button from './ui/Button'
 
 interface HoldButtonProps {
   onHoldEnded: () => void
@@ -82,8 +83,8 @@ export default function HoldButton({
   const ifNotDisabled = (cb) => (disabled ? () => {} : cb)
 
   return (
-    <button
-      className={`relative grid place-content-center overflow-hidden rounded-md text-xl text-white transition disabled:opacity-50 ${className} ${colors.main} ${colors.dark}`}
+    <Button
+      className={`${className} ${colors.main} ${colors.dark}`}
       onMouseDown={ifNotDisabled(onMouseHold)}
       onTouchStart={ifNotDisabled(onTouchHold)}
       onMouseUp={ifNotDisabled(cancelHold)}
@@ -96,7 +97,9 @@ export default function HoldButton({
         initial={{ width: '0%' }}
         animate={controls}
       ></motion.span>
-      <span className="z-10">{children}</span>
-    </button>
+      <span className="z-10 w-full h-full flex flex-row justify-center items-center">
+        {children}
+      </span>
+    </Button>
   )
 }

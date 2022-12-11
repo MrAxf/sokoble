@@ -116,42 +116,42 @@ function PlayButtons({
         className="col-start-1 row-start-1"
         disabled={disabled}
       >
-        <MdUndo />
+        <MdUndo className='w-4/5 h-4/5 min-w-[1em] min-h-[1em]' />
       </TickButton>
       <TickButton
         onTick={onButtonTick('up')}
         className="col-start-2 row-start-1"
         disabled={disabled}
       >
-        <MdKeyboardArrowUp />
+        <MdKeyboardArrowUp className='w-4/5 h-4/5 min-w-[1em] min-h-[1em]' />
       </TickButton>
       <HoldButton
         onHoldEnded={reset}
         className="col-start-3 row-start-1"
         disabled={disabled}
       >
-        <MdReplay />
+        <MdReplay className='w-4/5 h-4/5 min-w-[1em] min-h-[1em]' />
       </HoldButton>
       <TickButton
         onTick={onButtonTick('left')}
         className="col-start-1 row-start-2"
         disabled={disabled}
       >
-        <MdKeyboardArrowLeft />
+        <MdKeyboardArrowLeft className='w-4/5 h-4/5 min-w-[1em] min-h-[1em]' />
       </TickButton>
       <TickButton
         onTick={onButtonTick('down')}
         className="col-start-2 row-start-2"
         disabled={disabled}
       >
-        <MdKeyboardArrowDown />
+        <MdKeyboardArrowDown className='w-4/5 h-4/5 min-w-[1em] min-h-[1em]' />
       </TickButton>
       <TickButton
         onTick={onButtonTick('right')}
         className="col-start-3 row-start-2"
         disabled={disabled}
       >
-        <MdKeyboardArrowRight />
+        <MdKeyboardArrowRight className='w-4/5 h-4/5 min-w-[1em] min-h-[1em]' />
       </TickButton>
     </motion.div>
   )

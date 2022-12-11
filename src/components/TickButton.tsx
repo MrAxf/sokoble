@@ -1,5 +1,6 @@
 import { MouseEvent, ReactNode, TouchEvent, useEffect, useRef } from 'react'
 import isTouchAviable from '../utils/isTouchAviable'
+import Button from './ui/Button'
 
 interface TickButtonProps {
   children: ReactNode
@@ -71,8 +72,8 @@ export default function TickButton({
 
   const ifNotDisabled = (cb) => (disabled ? () => {} : cb)
   return (
-    <button
-      className={`grid place-content-center rounded-md bg-secondary-main text-xl text-white transition hover:bg-secondary-dark disabled:opacity-50 ${className}`}
+    <Button
+      className={className}
       onMouseDown={ifNotDisabled(enableMouseTick)}
       onTouchStart={ifNotDisabled(enableTouchTick)}
       onMouseLeave={ifNotDisabled(disableTick)}
@@ -81,6 +82,6 @@ export default function TickButton({
       disabled={disabled}
     >
       {children}
-    </button>
+    </Button>
   )
 }
