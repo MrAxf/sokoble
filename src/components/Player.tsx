@@ -7,7 +7,7 @@ export default function Player() {
 
   return (
     <motion.circle
-      style={{ fill: tailwindData.theme.colors['player'] }}
+      style={{ fill: tailwindData.theme.colors['player'] as string }}
       r="0.5"
       animate={{
         x: meta.walls.left + player.x + 0.5,

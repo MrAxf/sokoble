@@ -33,7 +33,7 @@ export default function Loader() {
             ry="0.3"
             x="0"
             y="0"
-            fill={tailwindData.theme.colors['box'].primary}
+            fill={tailwindData.theme.colors['box']['primary']}
           ></rect>
           <rect
             width="0.5"
@@ -42,7 +42,7 @@ export default function Loader() {
             ry="0.15"
             x="0.25"
             y="0.25"
-            fill={tailwindData.theme.colors['box'].secondary}
+            fill={tailwindData.theme.colors['box']['secondary']}
           ></rect>
         </motion.g>
         <motion.g
@@ -61,7 +61,7 @@ export default function Loader() {
             ry="0.3"
             x="1"
             y="0"
-            fill={tailwindData.theme.colors['box'].success.primary}
+            fill={tailwindData.theme.colors['box']['success']['primary']}
           ></rect>
           <rect
             width="0.5"
@@ -70,11 +70,11 @@ export default function Loader() {
             ry="0.15"
             x="1.25"
             y="0.25"
-            fill={tailwindData.theme.colors['box'].success.secondary}
+            fill={tailwindData.theme.colors['box']['success']['secondary']}
           ></rect>
         </motion.g>
         <motion.circle
-          fill={tailwindData.theme.colors['player']}
+          fill={tailwindData.theme.colors['player'] as string}
           r="0.5"
           cx="2.5"
           cy="0.5"
@@ -102,7 +102,7 @@ export default function Loader() {
             ry="0.3"
             x="3"
             y="0"
-            fill={tailwindData.theme.colors['box'].primary}
+            fill={tailwindData.theme.colors['box']['primary']}
           ></rect>
           <rect
             width="0.5"
@@ -111,7 +111,7 @@ export default function Loader() {
             ry="0.15"
             x="3.25"
             y="0.25"
-            fill={tailwindData.theme.colors['box'].secondary}
+            fill={tailwindData.theme.colors['box']['secondary']}
           ></rect>
         </motion.g>
         <motion.g
@@ -130,7 +130,7 @@ export default function Loader() {
             ry="0.3"
             x="4"
             y="0"
-            fill={tailwindData.theme.colors['box'].success.primary}
+            fill={tailwindData.theme.colors['box']['success']['primary']}
           ></rect>
           <rect
             width="0.5"
@@ -139,7 +139,7 @@ export default function Loader() {
             ry="0.15"
             x="4.25"
             y="0.25"
-            fill={tailwindData.theme.colors['box'].success.secondary}
+            fill={tailwindData.theme.colors['box']['success']['secondary']}
           ></rect>
         </motion.g>
       </svg>

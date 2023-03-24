@@ -19,9 +19,9 @@ export default function SokobanGrid() {
           width="1"
           height="1"
           style={{
-            fill: tailwindData.theme.colors["primary"].light,
+            fill: tailwindData.theme.colors["primary"]['light'],
             strokeWidth: 0.05,
-            stroke: tailwindData.theme.colors["primary"].light,
+            stroke: tailwindData.theme.colors["primary"]['light'],
           }}
         />
       ),
@@ -33,9 +33,9 @@ export default function SokobanGrid() {
             width="1"
             height="1"
             style={{
-              fill: tailwindData.theme.colors["primary"].light,
+              fill: tailwindData.theme.colors["primary"]['light'],
               strokeWidth: 0.05,
-              stroke: tailwindData.theme.colors["primary"].light,
+              stroke: tailwindData.theme.colors["primary"]['light'],
             }}
           />
           <circle

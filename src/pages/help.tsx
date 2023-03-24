@@ -24,12 +24,12 @@ const transition = {
 
 const boxColors = {
   outer: {
-    primary: tailwindData.theme.colors['box'].primary,
-    success: tailwindData.theme.colors['box'].success.primary,
+    primary: tailwindData.theme.colors['box']['primary'],
+    success: tailwindData.theme.colors['box']['success']['primary'],
   },
   inner: {
-    primary: tailwindData.theme.colors['box'].secondary,
-    success: tailwindData.theme.colors['box'].success.secondary,
+    primary: tailwindData.theme.colors['box']['secondary'],
+    success: tailwindData.theme.colors['box']['success']['secondary'],
   },
 }
 
@@ -55,7 +55,7 @@ export default function Help() {
           className="w-[2rem] h-[2rem]"
         >
           <circle
-            style={{ fill: tailwindData.theme.colors['player'] }}
+            style={{ fill: tailwindData.theme.colors['player'] as string }}
             r="0.5"
             cx={0.5}
             cy={0.5}
@@ -78,7 +78,7 @@ export default function Help() {
               ry="0.3"
               x="0"
               y="0"
-              fill={tailwindData.theme.colors['box'].primary}
+              fill={tailwindData.theme.colors['box']['primary']}
             ></rect>
             <rect
               width="0.5"
@@ -87,7 +87,7 @@ export default function Help() {
               ry="0.15"
               x="0.25"
               y="0.25"
-              fill={tailwindData.theme.colors['box'].secondary}
+              fill={tailwindData.theme.colors['box']['secondary']}
             ></rect>
           </g>
         </svg>
@@ -114,11 +114,11 @@ export default function Help() {
             height="1"
             x="0"
             y="0"
-            fill={tailwindData.theme.colors['primary'].light}
+            fill={tailwindData.theme.colors['primary']['light']}
           />
           <circle cx={2.5} cy={0.5} r="0.25" style={{ fill: 'white' }} />
           <motion.circle
-            style={{ fill: tailwindData.theme.colors['player'] }}
+            style={{ fill: tailwindData.theme.colors['player'] as string }}
             r="0.5"
             cx={0.5}
             cy={0.5}

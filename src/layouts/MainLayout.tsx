@@ -21,7 +21,7 @@ export default function MainLayout({ children }: PageLayoutProps) {
       </header>
       <main className="flex-auto overflow-hidden">{children}</main>
       <footer className="flex flex-none flex-row justify-center bg-slate-200 py-1 dark:bg-slate-900">
-        <span className="text-center text-sm">Axford ⓒ 2022</span>
+        <span className="text-center text-sm">Axford ⓒ 2023</span>
       </footer>
     </div>
   )
