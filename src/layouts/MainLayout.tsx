@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import Navbar from '../components/Navbar'
-import { Open_Sans } from '@next/font/google'
+import { Open_Sans } from 'next/font/google'
 import Confetti from '../components/Confetti'
 
 const mainFont = Open_Sans({

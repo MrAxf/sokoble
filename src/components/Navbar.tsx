@@ -1,4 +1,4 @@
-import { Open_Sans } from '@next/font/google'
+import { Open_Sans } from 'next/font/google'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { MdHelp, MdOutlinePoll, MdSettings } from 'react-icons/md'

@@ -82,7 +82,7 @@ export const SokobanProvider = ({ children, board }: SokobanProviderProps) => {
     const boxesArr = Object.entries(boxes)
     return (
       boxesArr.length !== 0 &&
-      boxesArr.findIndex(([, box]) => !box.inButton) === -1
+      boxesArr.every(([,box]) => box.inButton)
     )
   }, [boxes])
   const prevGameCompleted = useRef(gameCompleted)

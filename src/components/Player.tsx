@@ -10,8 +10,8 @@ export default function Player() {
       style={{ fill: tailwindData.theme.colors['player'] }}
       r="0.5"
       animate={{
-        cx: meta.walls.left + player.x + 0.5,
-        cy: meta.walls.top + player.y + 0.5,
+        x: meta.walls.left + player.x + 0.5,
+        y: meta.walls.top + player.y + 0.5,
       }}
     ></motion.circle>
   )
