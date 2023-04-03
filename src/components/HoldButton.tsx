@@ -1,5 +1,5 @@
-import { motion, useAnimationControls } from 'framer-motion'
-import { MouseEvent, ReactNode, TouchEvent, useEffect, useMemo } from 'react'
+import { useAnimate, AnimationPlaybackControls } from 'framer-motion'
+import { MouseEvent, ReactNode, TouchEvent, useEffect, useMemo, useRef } from 'react'
 
 import isTouchAviable from '../utils/isTouchAviable'
 
@@ -20,7 +20,8 @@ export default function HoldButton({
   disabled = false,
   theme = 'secondary',
 }: HoldButtonProps) {
-  const controls = useAnimationControls()
+  const [scope, animate] = useAnimate()
+  const controls = useRef<AnimationPlaybackControls>()
 
   useEffect(() => {
     if (disabled) cancelHold()
@@ -55,27 +56,32 @@ export default function HoldButton({
   }
 
   const initHold = async () => {
-    try {
-      await controls.start({
+      controls.current = animate(scope.current, {
         width: '100%',
-        transition: {
-          duration: holdTime / 1000,
+        opacity: 1,
+      }, {
+        duration: holdTime / 1000,
+        
+        onComplete: () => {
+          onHoldEnded()
+          animate(scope.current, {
+            opacity: 0,
+          }, {
+            duration: .5
+          })
         },
       })
-      onHoldEnded()
-      controls.start({
-        opacity: 0,
-      })
-    } catch (error) {
-      console.log(error)
-    }
+      controls.current.play();
   }
 
   const cancelHold = () => {
-    controls.stop()
-    controls.set({
-      width: '0%',
-      opacity: 1,
+    controls.current.stop()
+    controls.current.cancel()
+    animate(scope.current, {
+      opacity: 0,
+      width: 0
+    }, {
+      duration: .1
     })
   }
 
@@ -91,11 +97,10 @@ export default function HoldButton({
       onTouchEnd={ifNotDisabled(cancelHold)}
       disabled={disabled}
     >
-      <motion.span
+      <span
         className={`absolute h-full ${colors.light}`}
-        initial={{ width: '0%' }}
-        animate={controls}
-      ></motion.span>
+        ref={scope}
+      ></span>
       <span className="z-10">{children}</span>
     </button>
   )
